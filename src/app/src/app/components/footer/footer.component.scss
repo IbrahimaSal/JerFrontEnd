@@ -8,7 +8,6 @@
   word-wrap: break-word;
   font-size-adjust: auto;
   text-align:center;
-
 }
 
 .fa-facebook {
@@ -85,13 +84,19 @@
     color:white;
     font-size: x-large;
   }
-  @media screen and (max-width: 768px){
-      span{
-        color:#bc1888;
-        font-size: 80%;
-      }
-      p{
-        color:#00aff0;
-        font-size:70%;
-      }
+
+  .fa-home{
+    color:green;
+    font-size: x-large;
+  }
+
+@media screen and (max-width: 768px){
+  span{
+    color:#bc1888;
+    font-size: 80%;
+  }
+  p{
+    color:#00aff0;
+    font-size:70%;
+  }
 }
