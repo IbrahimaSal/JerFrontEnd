@@ -6,14 +6,16 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './src/app/components/header/header.component';
 import { FooterComponent } from './src/app/components/footer/footer.component';
-import { UserStatusComponent } from './src/app/components/user-status/user-status.component'
+import { UserStatusComponent } from './src/app/components/user-status/user-status.component';
+import { HomeComponent } from './src/app/components/home/home.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    UserStatusComponent
+    UserStatusComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

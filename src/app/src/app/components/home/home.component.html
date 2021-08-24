@@ -1,0 +1,93 @@
+<nav ngbNav #nav="ngbNav" class="nav-tabs-md navbar">
+    <ng-container ngbNavItem>
+      <a ngbNavLink class="text-white">A propos de moi</a>
+      <ng-template ngbNavContent>
+        <p class="text-white">
+          Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
+          master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
+          keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat
+          salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
+        </p>
+      </ng-template>
+    </ng-container>
+    <ng-container ngbNavItem>
+      <a ngbNavLink class="text-white">Pourquoi me rejoindre</a>
+      <ng-template ngbNavContent>
+        <p  class="text-white">
+          Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
+          farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
+          ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar
+          helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson
+          8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
+          stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.
+        </p>
+      </ng-template>
+    </ng-container>
+    <ng-container ngbNavItem >
+      <a ngbNavLink class="text-white">Formules d'abonnement</a>
+      <ng-template ngbNavContent>
+        <p  class="text-white">
+          Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla facilisi.
+          Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu, congue et odio.
+          Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed diam urna,
+          egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec
+          tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque penatibus et
+          magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget
+          neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
+      </ng-template>
+    </ng-container>
+    <ng-container ngbNavItem>
+      <a ngbNavLink class="text-white">Actualités</a>
+      <ng-template ngbNavContent>
+        <p class="text-white">
+          acilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque penatibus et
+          magnis dis parturient montes, nascetur ridiculSed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla facilisi.
+          Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu, congue et odio.
+          Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed diam urna,
+          egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec
+          tristique ipsum euismod fus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget
+          neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
+      </ng-template>
+    </ng-container>
+  </nav>
+  
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+
+<div style="height:50vh" class="bg-transparent d-flex flex-column justify-content-around border-3 border-danger">  
+    <div class="d-flex justify-content-around ">
+        <button style='background-color:red' class='rounded-pill text-white'>
+            <i class="fa fa-camera h3"></i>
+            <span class="h3">
+                Photos
+            </span>
+        </button>
+        <button style='background-color:red' class='rounded-pill text-white'>
+            <i  class="fa fa-music h3"></i> 
+            <span class="h3">
+                Musique
+            </span>
+        </button>
+    </div>  
+    <div class="bg-transparent d-flex justify-content-center">  
+        <button style='background-color:red' class="text-white rounded-pill d-flex justify-content-center align-items-center">
+            <span class="h3">                
+                Je veux en savoir plus !                
+            </span>
+        </button>
+    </div>
+    <div class="d-flex justify-content-around">  
+        <button style='background-color:red' class='rounded-pill text-white'>
+            <i class='fas fa-tshirt h3'></i>
+            <span class="h3">
+                Creation vetements
+            </span>
+        </button>
+        <button style='background-color:red' class='rounded-pill text-white'>
+            <i class="fa fa-exclamation-triangle h3"></i>
+            <span  class="h3">
+                X-medias
+            </span>
+        </button>    
+    </div>    
+</div>
