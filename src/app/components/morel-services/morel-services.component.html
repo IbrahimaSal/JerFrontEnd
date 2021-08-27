@@ -1,0 +1,83 @@
+<div class="navbar bg-transparent">
+  <div  style="background-color:red" class="container-fluid d-flex justify-content-between">
+    <div class="d-flex justify-content-center h-100">
+      <button  class="bg-transparent text-white border-0 d-flex justify-content-around align-items-center" >
+        <i class="fas fa-user-circle fa-2x bg-transparent h-100"></i>&nbsp;&nbsp;
+        <div class="bg-transparent d-none d-md-flex align-items-center"><h4>Profil</h4></div>
+      </button>
+    </div>
+    <div class="bg-transparent d-flex justify-content-center w-75">
+      <div class="col d-flex justify-content-center align-items-center bg-transparent">
+        <button class="nav-item bg-transparent border-0 text-white" routerLink="/home">
+          Home
+        </button>
+      </div>
+      <div  class="col d-flex justify-content-center align-items-center bg-transparent">
+        <div  ngbDropdown class="d-inline-block bg-transparent w-100 text-center">
+          <button class="btn text-white" id="dropdownBasic1" ngbDropdownToggle>Photos</button>
+            <div style="background-color: red;width: 100%;" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button routerLink="/services/photosalaune" ngbDropdownItem>Photos à la une</button>
+              <button routerLink="/services/modelesmasculins" ngbDropdownItem>Modèles masculin</button>
+              <button routerLink="/services/modelesfeminins" ngbDropdownItem>Modèles féminins</button>
+              <button routerLink="/services/shootings" ngbDropdownItem>Shootings</button>
+            </div>
+        </div>
+      </div>
+      <div class="col d-flex justify-content-center align-items-center bg-transparent g">
+        <button class="nav-item bg-transparent border-0 text-white" routerLink="/services/clothes">
+          Vetements
+        </button>
+      </div>
+      <div class="col d-flex align-items-center justify-content-center">
+        <button class="nav-item bg-transparent border-0 text-white" routerLink="/services/music">
+          Musique
+        </button>
+      </div>
+      <!-- <div class="col d-flex align-items-center">
+        <a class="nav-item bg-transparent border-0 text-white" routerLink="/services/clothes">
+          Clothes
+        </a>
+      </div> -->
+      <div class="col d-flex align-items-center justify-content-center bg-transparent">
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn text-white" id="dropdownBasic1" ngbDropdownToggle>X-Medias</button>
+          <div style="background-color: red;" ngbDropdownMenu aria-labelledby="dropdownBasic1" class="text-white">
+            <button routerLink="/services/xcreations" ngbDropdownItem>Creations</button>
+            <button routerLink="/services/xprivatedemands" ngbDropdownItem>Demandes privées</button>
+            <button routerLink="/services/subscription" ngbDropdownItem>S'abonner</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="d-flex align-items-center bg-transparent h-100">
+      <button routerLink="/cart" class="bg-transparent border-0 text-white"> -->
+    <div class="d-flex justify-content-center h-100">
+      <button  class="bg-transparent text-white border-0 d-flex justify-content-around align-items-center" >
+        <i class="fas fa-shopping-cart fa-2x bg-transparent h-100 d-md-none d-block" ></i>&nbsp;&nbsp;
+        <div class="bg-transparent d-none d-md-flex align-items-center">
+          <h4>Panier 0</h4>
+        </div>
+      </button>
+    </div>
+  <!-- Step 3: Toggle the value of the property when the toggler button is clicked. -->
+  <!-- <button class="navbar-toggler bg-danger" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+      &#9776;
+  </button> -->
+<!-- Step 2: Add the ngbCollapse directive to the element below. -->
+<!-- <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+  <ul class="navbar-nav">
+    <li class="nav-item active"> -->
+      <!-- Step 4: Close the menu when a link is clicked. -->
+      <!-- <a class="nav-link" [routerLink]="'.'" (click)="isMenuCollapsed = true">Features</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="'.'" (click)="isMenuCollapsed = true">Examples</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="'.'" (click)="isMenuCollapsed = true">About</a>
+    </li>
+  </ul>
+</div> -->
+</div>
+</div>
+<router-outlet></router-outlet>
