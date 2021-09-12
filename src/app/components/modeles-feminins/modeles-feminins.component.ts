@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GalleriesService } from 'src/app/services/galleryservice/galleries.service';
 
 @Component({
   selector: 'app-modeles-feminins',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModelesFemininsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public cloudGalleryService:GalleriesService) { }
 
   ngOnInit(): void {
+
   }
+  IMAGES=this.cloudGalleryService.getGIRL();
 
 }

@@ -19,6 +19,9 @@ import { XcreationComponent } from './components/xcreation/xcreation.component';
 import { XPrivateDemandsComponent } from './components/xprivate-demands/xprivate-demands.component';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
 import { CartComponent } from './components/cart/cart.component';
+import { Menu1Component } from './menu1/menu1.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
+import { GalleriesComponent } from './services/galleryservices/galleries/galleries.component';
 
 
 @NgModule({
@@ -39,7 +42,10 @@ import { CartComponent } from './components/cart/cart.component';
     XcreationComponent,
     XPrivateDemandsComponent,
     SubscriptionComponent,
-    CartComponent
+    CartComponent,
+    Menu1Component,
+    GalleryComponent,
+    GalleriesComponent
   ],
   imports: [
     BrowserModule,

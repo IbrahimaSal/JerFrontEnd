@@ -14,7 +14,7 @@ import { ModelesFemininsComponent } from './components/modeles-feminins/modeles-
 import { SubscriptionComponent } from './components/subscription/subscription.component';
 
 const routes: Routes = [
-  {path:'home', component: HomeComponent},
+  {path:'', component: HomeComponent},
   {path:'cart', component: CartComponent},
   // {path:'services/v1/:id', component: MorelServicesComponent}, 
   { path: 'services', component: MorelServicesComponent ,

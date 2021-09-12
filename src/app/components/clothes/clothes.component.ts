@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GalleriesService } from 'src/app/services/galleryservice/galleries.service';
 
 @Component({
   selector: 'app-clothes',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClothesComponent implements OnInit {
 
-  constructor() { }
+  constructor(public cloudGalleryService:GalleriesService) { }
+
+  IMAGES=this.cloudGalleryService.getClothes();
 
   ngOnInit(): void {
   }

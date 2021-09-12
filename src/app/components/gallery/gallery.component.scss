@@ -1,0 +1,126 @@
+/* ******** Gallery  ************ */
+#gallery{
+    /* background-color: rgb(208, 230, 249); */
+    /* max-width: 100%; */
+    width:100%;
+    height:max-content;
+    display:flex;
+    justify-content: space-around;
+    align-items: space;
+    flex-wrap: wrap;
+}
+.imageGallery{
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    width:400px;
+    height:400px;
+}
+.imageGallery:hover{
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    /* L'image est grossie de 10% */
+    -webkit-transform:scale(1.10); /* Safari et Chrome */
+    -moz-transform:scale(1.10); /* Firefox */
+    -ms-transform:scale(1.1); /* Internet Explorer 9 */
+    -o-transform:scale(1.1); /* Opera */
+    transform:scale(1.1);
+}
+
+/* *********************** */
+/*  Carousel */
+/* *********************** */
+
+#carousel{
+    position:fixed;
+    /* background-color:blue;  */
+    left: 0;
+    top: 0;   
+    width:100vw;
+    height:100vh;
+    z-index:10;
+}
+
+#imageToDisplayContainer{
+    position:fixed;
+    top:0;
+    width:100vw;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    height: 80%;
+}
+
+.imageToDisplay{    
+    max-height:98%;
+    max-width:100%;
+    z-index: 4;
+}
+
+/* *********************** */
+/* ICONS */
+/* *********************** */
+
+i{
+    position:absolute;
+    color:red;
+    top:43%;
+    z-index: 5;
+}
+
+.fa-caret-left{ 
+    left:1vw;
+}
+.fa-caret-right{
+    right:1vw;
+}
+.fa-times{
+    top:0;
+    right:1vw;
+}
+
+
+/* *********************** */
+/*  BOTTOM ROW */
+/* *********************** */
+
+.bottomRowImageGallery{
+    height:18vh;
+    width:11.1111111vw;
+    opacity:50%;
+}
+
+
+
+
+#bottomRow{
+    position:fixed;
+    bottom:0;
+    display:flex;
+    flex-flow: row nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    align-items: center;
+    max-height: 20vh;
+    bottom:0;
+    width:100vw;
+    
+}
+.bottomRowImageGallery:hover{
+    opacity:1;
+    height:20vh;
+    width:12vw;
+}
+.active{
+    height:20vh;
+    width:12vw;
+    opacity:1;
+}
+
+@media only screen and (max-width : 500px){
+    /* Styles */
+    #bottomRow{
+        display:none;
+    }
+}
+

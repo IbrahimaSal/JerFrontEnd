@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GalleriesService } from 'src/app/services/galleryservice/galleries.service';
 
 @Component({
   selector: 'app-photos-ala-une',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhotosAlaUneComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cloudGalleryService:GalleriesService) { }
+  IMAGES=this.cloudGalleryService.getClothes();
 
   ngOnInit(): void {
   }

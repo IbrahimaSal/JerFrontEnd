@@ -1,0 +1,34 @@
+
+  <div id='gallery' *ngIf="galleryOnTop">    
+    <div class='container-fluid d-flex justify-content-center text-danger'>
+        <H1>
+            {{title}}         
+        </H1>
+    </div>
+    <img class='imageGallery'
+        (click)="showCarouselAtImage(image.id)" 
+        *ngFor="let image of IMG"  
+        [src]="image.src">
+  </div>
+
+  <div id='carousel' *ngIf="carouselOnTop">
+    <div id='imageToDisplayContainer'>
+        <i style='font-size:300%'
+            (click)="showGallery()"
+            class="fa fa-times"></i>
+        <i style='font-size:500%'
+            (click)="displayPreviousImage()"
+            class="fa fa-caret-left"></i>
+        <i style='font-size:500%'
+            (click)="displayNextImage()"            
+            class="fa fa-caret-right"></i> 
+        <!-- <img class='imageToDisplay' [src]='IMAGES[indexOfImageToShow].src'> -->
+        <img class='imageToDisplay' [src]='IMG[indexOfImageToShow].src'>
+    </div> 
+    <div id='bottomRow'>
+        <img class='bottomRowImageGallery active' 
+            *ngFor="let image of IMG"
+            (click)="changeImageToShow(image.id)"
+            [src]="image.src">
+    </div>
+  </div>

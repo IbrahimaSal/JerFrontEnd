@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GalleriesService } from 'src/app/services/galleryservice/galleries.service';
 
 @Component({
   selector: 'app-modeles-masculins',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modeles-masculins.component.scss']
 })
 export class ModelesMasculinsComponent implements OnInit {
+  constructor(public cloudGalleryService:GalleriesService) { }
 
-  constructor() { }
-
+  IMAGES=this.cloudGalleryService.getMen();
+  
   ngOnInit(): void {
+
   }
+  
 
 }
