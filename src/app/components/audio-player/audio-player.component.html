@@ -1,4 +1,168 @@
-<p class="h1 text-white">audio-player works!</p>
-<p class="h1 text-white">audio-player works!</p><p class="h1 text-white">audio-player works!</p>
-<p class="h1 text-white">audio-player works!</p>
-<p class="h1 text-white">audio-player works!</p>
+<div 
+    id="audioplayercontainer"
+    class="d-flex bg-transparent flex-column justify-content-between align-items-center m-0 w-60"
+    *ngIf="showPlayer"
+>
+    <h1>MetiisseCore tracks</h1>                     
+    <div 
+      style="min-height:60vh;"
+      class="d-flex flex-column justify-content-center align-items-center w-50 bg-transparent">
+    <div
+      style="background-color:black;width: 80%;"
+      [@MusicInfoState]="MusicInfoFrame()"     
+      class=" d-flex flex-column justify-content-start align-items-end border border-danger border-5  rounded">
+        <div 
+          style="min-width:60%" 
+          class="d-flex flex-column flex-grow-1 bg-transparent">
+          <div class="container-fluid d-flex justify-content-evenly bg-transparent h-25">
+            <div class="d-flex justify-content-start align-items-center  w-25 ">
+              <i class="fas fa-comment-alt"></i>
+            </div>
+            <div class="w-25 bg-transparent d-flex justify-content-start align-items-center">
+              <i class="fas fa-heart"></i>
+            </div>
+            <div class="w-25 bg-transparent d-flex justify-content-end align-items-center">
+              <i class="fas fa-share-alt"></i>
+            </div>
+            <div class="w-25 bg-transparent d-flex justify-content-end align-items-center">
+              <i class="fas fa-download"></i>
+            </div>
+          </div>
+          <div class="container-fluid bg-transparent">
+            <b class="text-white">{{songs[indexOfSongToPlay].songName}}</b>
+          </div>        
+          <div class="container-fluid bg-transparent h-25">                                  
+              <input 
+                id="trackTimeSlider"
+                [style]="cursorAdvancement()"
+                type="range"                
+                min="0" 
+                [value]="state?.currentTime"
+                [max]="state?.duration" 
+                (input)="onSliderChangeEnd($event)"
+                step="0.1"
+              >
+          </div>
+          <div class="container-fluid d-flex justify-content-between h-25 bg-transparent">
+            <div class="text-white">
+              <h6>{{state?.readableCurrentTime}}</h6>
+            </div>
+            <div class="text-white">
+              <h6>{{state?.readableDuration}}</h6>
+            </div>       
+          </div>
+        </div>
+    </div>
+    <div
+      style="background-color:red;min-height:15vh;height:15vh;"
+      class="d-flex align-items-center w-100 rounded-3"
+    >
+      <div id="imagecontainer">
+        <img    
+          [@isPlaying]="playstop()"
+          id="cover"
+          alt="music-cover"
+          [src]="songs[indexOfSongToPlay].coverUrl">
+      </div>
+      <div class="container-fluid h-100 d-flex flex-column">
+      <div class="container-fluid d-flex h-50 bg-transparent align-items-center w-100 p-0">
+      <div 
+        style="background-color: black;"
+        class="btn-group w-100 h-75 d-flex flex-row justify-content-between align-items-center rounded-pill">        
+        <button 
+          (click)="previousSong()"
+          class="btn text-white h-50 d-flex align-items-center justify-content-center">
+          <i class="fas fa-backward"></i>
+        </button>
+        <button       
+          (click)="stopSong()"
+          class="btn text-white h-50 d-flex align-items-center justify-content-center">
+          <i class="fas fa-stop"></i>
+        </button>
+        <button 
+          (click)="replaySong()"
+          class="btn text-white h-50 d-flex align-items-center justify-content-center">
+          <i class="fas fa-undo"></i>
+        </button>
+        <button 
+          (click)="playCurrentSong()"
+          *ngIf="!isPlaying()"
+          class="btn text-white h-50 d-flex align-items-center justify-content-center">
+          <i class="fas fa-play"></i>
+        </button>
+        <button 
+          *ngIf="isPlaying()"
+          (click)="pauseCurrentSong()"
+          class="btn text-white h-50 d-flex align-items-center justify-content-center">
+          <i class="fas fa-pause"></i>
+        </button>
+        <button 
+          (click)="nextSong()"
+          class="btn text-white h-50 d-flex align-items-center justify-content-center">
+          <i class="fas fa-forward"></i>
+        </button>
+      </div>
+    </div>  
+      <div         
+        class="container-fluid d-flex h-50 bg-transparent align-items-center w-100 p-0">
+        <div 
+          style="background-color: black;"
+          class="h-75  d-flex w-100 flex-row justify-content-between border-5 border-light rounded-pill p-2">
+          <div class="btn text-danger d-flex align-items-center">
+            <i *ngIf="false" class="fas fa-volume-mute"></i>
+            <i *ngIf="false" class="fas fa-volume-off"></i>
+            <i *ngIf="false" class="fas fa-volume-down"></i>
+            <i *ngIf="true" class="fas fa-volume-up"></i>
+          </div>
+          <div class="bg-transparent flex-grow-1 d-flex  align-items-center">
+            <input id="volumeSlider" type="range" min=0 [value]="this.volumeState" (input)="onVolumeSliderChange($event)" max=1 step=0.01>          
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+   <div *ngIf="showPlayer" class="listofsongs" >
+    <h1> My songs </h1><br><br>
+    <ngb-accordion 
+      [closeOthers]="true" 
+      [destroyOnHide]="true"
+      (panelChange)='panelShadow($event)'
+      >
+      <ngb-panel *ngFor="let song of songs" id="panel{{song.id}}">  
+        <ng-template ngbPanelTitle>
+          <span>{{song.songName}}</span>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <div class="d-flex justify-content-between align-items-center h-100 w-100 m-0 bg-transparent">
+            <img 
+              [src]="song.coverUrl" 
+              class="rounded-circle"
+              style="width:100px;height:100px;"/>
+            <div style="width:50%;" id="peak{{song.id}}"></div>
+            <div 
+              class="btn-group rounded bg-transparent d-flex bg-warning flex-row justify-content-end align-items-center">
+              <button class="stopWaveButton bg-transparent border-0 text-white">
+                <i class="fas fa-stop"></i>
+              </button>
+              <button (click)="replaySong()" class="bg-transparent border-0 text-white">
+                <i class="fas fa-undo"></i>
+              </button>
+              <button 
+                class="playWaveButton bg-transparent border-0 text-white">
+                <i class="fas fa-play"></i>/
+                <i class="fas fa-pause"></i>
+              </button>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    </div>
+  
+
+
+
+  

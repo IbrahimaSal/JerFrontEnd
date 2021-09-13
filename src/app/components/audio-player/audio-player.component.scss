@@ -1,0 +1,281 @@
+/* #audioplayercontainer {
+    width: 60%;
+    justify-content: center;
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+  } */
+
+/* .music-container {
+    background-color: red;
+    border-radius: 15px;
+    box-shadow: 0 20px 20px 0 red;
+    display: flex;
+    padding: 20px 30px;
+    position: relative;
+    margin: 100px 0;
+    z-index: 10;
+} */
+
+/* .img-container {
+  position: relative;
+  width: 110px;
+} */
+
+/* .img-container::after {
+  content: '';
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+} */
+
+/* .img-container img {
+  border-radius: 50%;
+  object-fit: cover;
+  height: 110px;
+  width: inherit;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+} */
+
+  
+@keyframes rotate {
+    
+    from {
+      transform: translateY(-50%) rotate(0deg);
+    }
+  
+    to {
+      transform: translateY(-50%) rotate(360deg);
+    }
+  }
+  .cardpanel{
+    color:white;
+    background-color:rgb(20, 106, 255);
+  }
+//   ngb-accordion {
+//     background-color: yellow;
+//   }
+//   ngb-panel{
+//     background-color:green!important;
+//   }
+
+// ngb-accordion /deep/ .card /deep/ [role=tab]#\5 -header{
+//     background-color: red !important;
+// }
+  
+  /* .navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  } */
+  
+  /* .action-btn {
+    background-color: rgb(255, 0, 0);
+    border: 0;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0 20px;
+  } */
+  
+  /* .action-btn.action-btn-big {
+    color: white;
+    font-size: 30px;
+  }
+  
+  .action-btn:focus {
+    outline: 0;
+  } */
+
+  
+  /* .music-info {
+    background-color: rgb(250, 76, 76);
+    color: white;
+    border-radius: 15px 15px 0 0;
+    position: absolute;
+    top: 0;
+    left: 20px;
+    width: calc(100% - 40px);
+    padding: 10px 10px 10px 150px;
+    opacity: 0;
+    transform: translateY(0%);
+    transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+    z-index: 0;
+  }
+   */
+  /* .music-container.play .music-info {
+    opacity: 1;
+    transform: translateY(-100%);
+  } */
+  
+  /* .music-info h4 {
+    margin: 0;
+  } */
+  
+  /* .progress-container {
+    background: red;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+    height: 4px;
+    width: 100%;
+  } */
+  
+  /* .progress {
+    background-color:white;
+    border-radius: 5px;
+    height: 100%;
+    width: 0%;
+    transition: width 0.1s linear;
+  } */
+  
+
+  /* .listofsongs{
+    width: 100%;
+  }
+
+  .audioPanelContent{ 
+    max-height: 10vh;
+  }
+
+  .covercontainer{
+    height:100%;
+    width:20%;
+  } */
+  @mixin responsive-box($height){
+    position: relative;
+    &:before{
+      content: '';
+      display: block;
+      padding-top: $height;
+    }
+  }
+  
+  // .box{
+  //   @include responsive-box(100%);
+  //   /*For the box appearance*/
+  //   background: #222;
+  //   color: #fff;
+  //   width: 250px;
+  // }
+
+#cover{
+  @include responsive-box(100%);
+  // $width: 150px;
+  // height: $width;
+  width:15vh;
+  border-width: 2vh;
+  border-style: solid;
+  border-color:red;
+  border-radius:50%;
+  // height: 100px;
+  // width: 100px;
+  // position:absolute;
+  // top:-25%;
+}
+#imagecontainer{
+  // position:relative;
+  height:100%;
+  min-width:50%;
+  // min-height:250px;
+  position: relative;
+  background-color:red;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+// collapse toggle
+::ng-deep .collapse {
+  transition: max-height .55s, opacity .35s ease-in-out;
+  max-height: 0;
+  opacity: 0;
+  display: block !important;
+
+  &.show {
+    max-height: 100rem;
+    opacity: 1;
+  }
+}
+
+#trackTimeSlider {
+  -webkit-appearance: none;
+  -moz-apperance: none;
+  border-radius: 10px;
+  width:100%;
+  // height: 6px;
+  height:30%;
+  outline: none; 
+}
+
+#trackTimeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  background-color:red;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+}
+
+#volumeSlider{
+  -webkit-appearance: none;
+  -moz-apperance: none;
+  border-radius: 10px;
+  width:100%;
+  // height: 6px;
+  height:30%;
+  border:solid 2px red;
+  // outline: none; 
+}
+
+#volumeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  background-color:red;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+}
+
+// collapse toggle
+::ng-deep .collapse {
+  transition: max-height .55s, opacity .35s ease-in-out;
+  max-height: 0;
+  opacity: 0;
+  display: block !important;
+
+  &.show {
+    max-height: 100rem;
+    opacity: 1;
+  }
+}
+
+::ng-deep .accordion {
+  .card {
+    margin-bottom: 0 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, .04) !important;
+    .card-header {
+      background-color: red;
+      padding: 0;
+      button {
+        padding: 1.2rem;
+        width: 100%;
+        span {
+          float: left;
+          color:white;
+          font-size: 1.2rem;
+        }
+      }
+    }
+    .card-body {
+      padding: 1rem;
+      background-color:black;
+      color:white;
+    }
+  }
+}
