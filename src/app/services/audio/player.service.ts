@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-// import * as moment from 'moment';
 // import { BehaviorSubject, Subject, Observable } from 'rxjs';
 // import * as moment from 'moment';
-// import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { StreamState } from 'src/app/interfaces/stream-state';
 // import { takeUntil } from 'rxjs/operators';
 import { AudioCloudService } from './audio-cloud.service';
@@ -38,31 +37,31 @@ export class PlayerService {
 
   timer = this.currentSong.currentTime;
 
-//   private observable: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private observable: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-//   private songindex  : BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  private songindex  : BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
-//   private songDuration : BehaviorSubject<string> = new BehaviorSubject<string>(this.formatTime(this.currentSong.duration));
+  // private songDuration : BehaviorSubject<string> = new BehaviorSubject<string>(this.formatTime(this.currentSong.duration));
 
-//   private songVolume: BehaviorSubject<number> = new BehaviorSubject<number>(0.5);
+  private songVolume: BehaviorSubject<number> = new BehaviorSubject<number>(0.5);
 
-//   getSongVolume = () =>{
-//     return this.songVolume;
-//   }
+  getSongVolume = () =>{
+    return this.songVolume;
+  }
 
-//   getSongDuration = () =>{
-//     return this.songDuration;
-//   }
+  // getSongDuration = () =>{
+  //   return this.songDuration;
+  // }
 
-//   getobservable = () =>{
-//     return this.observable;
-//   }
+  getobservable = () =>{
+    return this.observable;
+  }
   
-//   getSongIndex = () =>{
-//     return this.songindex;
-//   }
+  getSongIndex = () =>{
+    return this.songindex;
+  }
 
-//   private stop$ = new Subject();
+  private stop$ = new Subject();
 
   private state: StreamState = {
     playing: false,
