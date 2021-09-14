@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 // import * as moment from 'moment';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { StreamState } from 'src/app/interfaces/stream-state';
-// import { takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { AudioCloudService } from './audio-cloud.service';
 
 @Injectable({
@@ -39,9 +39,12 @@ export class PlayerService {
   private observable: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   private songindex  : BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  formatTime = (time:number) => {
+    return String(time);
+  }
 
-  // private songDuration : BehaviorSubject<string> = new BehaviorSubject<string>(this.formatTime(this.currentSong.duration));
-  private songDuration : BehaviorSubject<string> = new BehaviorSubject<string>(String(this.currentSong.duration));
+  private songDuration : BehaviorSubject<string> = new BehaviorSubject<string>(this.formatTime(this.currentSong.duration));
+  // private songDuration : BehaviorSubject<string> = new BehaviorSubject<string>(String(this.currentSong.duration));
 
   private songVolume: BehaviorSubject<number> = new BehaviorSubject<number>(0.5);
 
@@ -136,9 +139,7 @@ export class PlayerService {
   //   const momentTime = time * 1000;
   //   return moment.utc(momentTime).format(format);
   // }
-  formatTime = (time:number) => {
-    return String(time);
-  }
+  
   getCurrentSong = ():HTMLAudioElement=>{
     return this.currentSong;
   }
@@ -270,11 +271,9 @@ stopSong = () => {
   this.playStream(this.currentSong).subscribe();
   this.musicInfoFrame="closed";
 }
-
 replaySong = () => {    
   this.currentSong.load();
   this.currentSong.play();
   this.isPlaying=true;
-}
-  
+} 
 }
