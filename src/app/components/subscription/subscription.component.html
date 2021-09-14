@@ -1,1 +1,67 @@
 <h1 class="text-white">subscription works!</h1>
+<div  style="height: 75vh;"class="container-fluid d-flex justify-content-center align-items-center">
+    <div class="d-flex flex-column bg-transparent"  
+         style="height:50vh;width:25vw;min-width:250px;border-radius:5vh;border-style:solid;border-color: red;">
+        <div class="bg-transparent d-flex justify-content-around mt-4" style="height:10%">
+            <button style="background-color: red;color:black"
+            (click)="switchToLogin()" 
+            class="button w-25 d-flex justify-content-center align-items-center  rounded-pill">login</button>
+            <button 
+                style="color:red;background-color:transparent;border-style: solid;border-color: red;"
+                (click)="switchToRegister()" 
+                class="button w-25 d-flex justify-content-center align-items-center rounded-pill">register</button>
+        </div> 
+        <form *ngIf="!login" class="mb-1 h-75 w-100 d-flex flex-column align-items-center">
+            <div style="height:100%" class="bg-transparent d-flex flex-column justify-content-around align-items-center">
+                <div class="form-group input-group bg-danger">
+                    <div class="input-group-prepend bg-black">
+                        <span class="input-group-text bg-light h-100"><i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Full name" type="text">
+                </div>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text h-100"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Email address" type="email">
+                </div>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text h-100"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input class="form-control" placeholder="Create password" type="password">
+                </div> 
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text h-100"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input class="form-control" placeholder="Repeat password" type="password">
+                </div>
+            </div>
+            <div class="container-fluid d-flex justify-content-center align-items-center flex-column">
+                <button style="background-color:red" class="rounded-pill w-50 text-white" routerLink="/services/userprofile">Register</button>
+                <!-- <a class="text-white">Forgot password ?</a> -->
+            </div>
+        </form>
+        <form *ngIf="login"  class="mb-1 h-75 w-100 d-flex flex-column align-items-center">
+            <div style="height:100%" class="bg-transparent d-flex flex-column justify-content-around align-items-center">
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text h-100"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Email address" type="email">
+                </div>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text h-100"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input class="form-control" placeholder="Create password" type="password">
+                </div> 
+            </div>
+            <div class="container-fluid d-flex justify-content-center align-items-center flex-column">
+                <button style="background-color:red" class="rounded-pill w-50 text-white" routerLink="/services/userprofile">Login</button>
+                <a class="text-white">Forgot password ?</a>
+            </div>
+        </form>
+    </div>
+</div>
