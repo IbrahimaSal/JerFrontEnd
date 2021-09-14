@@ -4,7 +4,7 @@ import { StreamState } from 'src/app/interfaces/stream-state';
 import { BehaviorSubject, Subject, Observable } from 'rxjs';
 import { map, tap, takeUntil} from 'rxjs/operators';
 import { AudioCloudService } from './audio-cloud.service';
-import moment from 'moment';
+// import moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -158,8 +158,9 @@ export class PlayerService {
   }
 
   formatTime(time: number, format: string = 'mm:ss') {
-    const momentTime = time * 1000;
-    return moment.utc(momentTime).format(format);
+    // const momentTime = time * 1000;
+    // return moment.utc(momentTime).format(format);
+    return String(time);
   }
   getCurrentSong = ():HTMLAudioElement=>{
     return this.currentSong;
