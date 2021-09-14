@@ -220,7 +220,7 @@ playCurrentSong = () => {
   // this.currentSong.play();
   this.musicInfoFrame='opened';
   this.isPlaying=true;
-  this.playstop='play';
+  this.playstop='play';  
   console.log(this.playstop);
   this.observable.next(this.isPlaying);
   // this.playStream(this.currentSong).subscribe();

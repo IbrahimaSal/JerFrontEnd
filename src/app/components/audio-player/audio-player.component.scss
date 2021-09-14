@@ -44,15 +44,13 @@
 
   
 @keyframes rotate {
-    
     from {
       transform: translateY(-50%) rotate(0deg);
     }
-  
     to {
       transform: translateY(-50%) rotate(360deg);
     }
-  }
+}
   .cardpanel{
     color:white;
     background-color:rgb(20, 106, 255);
@@ -211,7 +209,8 @@
   border-radius: 10px;
   width:100%;
   // height: 6px;
-  height:30%;
+  //height:10%;
+  height: 1vh;
   outline: none; 
 }
 

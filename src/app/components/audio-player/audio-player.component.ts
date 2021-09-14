@@ -48,26 +48,19 @@ import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
     ]),
   ],
 })
-export class AudioPlayerComponent implements OnInit, OnChanges {
 
-  state:StreamState |undefined;
-  
+export class AudioPlayerComponent implements OnInit, OnChanges {
+  state:StreamState | undefined;
   dura:string="";
-  
   volumeState:number=0.5;
-  
-  
-  constructor(public playerService:PlayerService) {
-        
+  constructor(public playerService:PlayerService) {        
     this.playerService.getSongIndex().subscribe((value)=>{
       console.log(value);
       this.indexOfSongToPlay=value;
     });
-  
     this.playerService.getState().subscribe(state => {
       this.state = state;
     });
-  
     this.playerService.getSongDuration().subscribe(readableDuration =>{
       this.dura=""+readableDuration;
       console.log(this.dura);
@@ -92,7 +85,6 @@ export class AudioPlayerComponent implements OnInit, OnChanges {
   
   ngOnInit(): void {    
   }
-  
   ngOnChanges(changes: SimpleChanges) {
   } 
   getStateReadableDuration = this.playerService.getStateReadableDuration;
