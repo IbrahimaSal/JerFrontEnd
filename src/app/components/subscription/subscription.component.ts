@@ -6,9 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./subscription.component.scss']
 })
 export class SubscriptionComponent implements OnInit {
-
   constructor() { }
 
+  login:boolean=true;
+
+  switchToLogin = () =>{
+    this.login=true;
+  }
+
+  switchToRegister = () =>{
+    this.login=false;
+  }
   ngOnInit(): void {
   }
 
