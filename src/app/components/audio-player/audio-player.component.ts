@@ -12,11 +12,13 @@ export class AudioPlayerComponent implements OnInit {
   ngOnInit(): void {
   }
   songs=this.playerService.getSongs();
+  aud:HTMLAudioElement=new Audio(this.songs[0].src);
+  
   play = () =>{
-    this.songs[0].load()
-    this.songs[0].play()
+    this.aud.load();      
+    this.aud.play();
   }  
   pause = () =>{
-    this.songs[0].pause();
+    this.aud.pause();
   }
 }
