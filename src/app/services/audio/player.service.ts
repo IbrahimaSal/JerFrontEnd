@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 // import { BehaviorSubject, Subject, Observable } from 'rxjs';
-// import * as moment from 'moment';
+const moment =require('moment');
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { StreamState } from 'src/app/interfaces/stream-state';
 // import { takeUntil } from 'rxjs/operators';
@@ -133,10 +133,10 @@ export class PlayerService {
     this.songVolume.next(newVolume);
   }
 
-  // formatTime(time: number, format: string = 'mm:ss') {
-  //   const momentTime = time * 1000;
-  //   return moment.utc(momentTime).format(format);
-  // }
+  formatTime(time: number, format: string = 'mm:ss') {
+    const momentTime = time * 1000;
+    return moment.utc(momentTime).format(format);
+  }
   getCurrentSong = ():HTMLAudioElement=>{
     return this.currentSong;
   }
