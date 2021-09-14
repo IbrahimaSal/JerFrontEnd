@@ -12,6 +12,7 @@ import { PhotosAlaUneComponent } from './components/photos-ala-une/photos-ala-un
 import { ModelesMasculinsComponent } from './components/modeles-masculins/modeles-masculins.component';
 import { ModelesFemininsComponent } from './components/modeles-feminins/modeles-feminins.component';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -30,6 +31,7 @@ const routes: Routes = [
       { path: 'subscription', component: SubscriptionComponent },
       { path: 'photospersonnelles', component: ClothesComponent },
       { path: 'clothes', component: ClothesComponent },
+      { path: 'userprofile', component: UserProfileComponent },
     ]
   },
   

@@ -22,6 +22,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { Menu1Component } from './menu1/menu1.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { GalleriesComponent } from './services/galleryservices/galleries/galleries.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { GalleriesComponent } from './services/galleryservices/galleries/galleri
     CartComponent,
     Menu1Component,
     GalleryComponent,
-    GalleriesComponent
+    GalleriesComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
