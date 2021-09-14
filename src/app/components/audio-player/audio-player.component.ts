@@ -15,7 +15,8 @@ export class AudioPlayerComponent implements OnInit {
   aud:HTMLAudioElement=new Audio(this.songs[0].src);
   
   play = () =>{
-    this.aud.load();      
+    console.log('play');
+    // this.aud.load();      
     this.aud.play();
   }  
   pause = () =>{
