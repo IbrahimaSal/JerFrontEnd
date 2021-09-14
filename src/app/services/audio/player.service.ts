@@ -73,119 +73,119 @@ export class PlayerService {
     error: false,
   };
 
-//   private stateChange: BehaviorSubject<StreamState> = new BehaviorSubject(
-//     this.state
-//   );
+  private stateChange: BehaviorSubject<StreamState> = new BehaviorSubject(
+    this.state
+  );
 
-//   private resetState() {
-//     this.state = {
-//       playing: false,
-//       readableCurrentTime: '',
-//       readableDuration: '',
-//       duration: undefined,
-//       currentTime: undefined,
-//       canplay: false,
-//       error: false
-//     };
-//   }
+  private resetState() {
+    this.state = {
+      playing: false,
+      readableCurrentTime: '',
+      readableDuration: '',
+      duration: undefined,
+      currentTime: undefined,
+      canplay: false,
+      error: false
+    };
+  }
 
-//   getState(): Observable<StreamState> {
-//     return this.stateChange.asObservable();
-//   }
+  getState(): Observable<StreamState> {
+    return this.stateChange.asObservable();
+  }
 
-//   private updateStateEvents(event: Event): void {
-//     switch (event.type) {
-//       case "canplay":
-//         this.state.duration = this.currentSong.duration;
-//         this.state.readableDuration = this.formatTime(this.state.duration);
-//         this.state.canplay = true;
-//         break;        
-//       case "playing":        
-//         this.state.playing = true;
-//         break;
-//       case "pause":
-//         this.state.playing = false;
-//         break;
-//       case "timeupdate":
-//         this.state.currentTime = this.currentSong.currentTime;
-//         this.state.readableCurrentTime = this.formatTime(
-//         this.state.currentTime
-//         );
-//         break;
-//       case "error":
-//         this.resetState();
-//         this.state.error = true;
-//         break;
-//     }
-//     this.stateChange.next(this.state);
-//   }
-//   stop() {
-//     this.stop$.next();
-//   }
+  private updateStateEvents(event: Event): void {
+    switch (event.type) {
+      case "canplay":
+        this.state.duration = this.currentSong.duration;
+        // this.state.readableDuration = this.formatTime(this.state.duration);
+        this.state.canplay = true;
+        break;        
+      case "playing":        
+        this.state.playing = true;
+        break;
+      case "pause":
+        this.state.playing = false;
+        break;
+      case "timeupdate":
+        this.state.currentTime = this.currentSong.currentTime;
+        // this.state.readableCurrentTime = this.formatTime(
+        // this.state.currentTime
+        // );
+        break;
+      case "error":
+        this.resetState();
+        this.state.error = true;
+        break;
+    }
+    this.stateChange.next(this.state);
+  }
+  stop() {
+    this.stop$.next();
+  }
 
-//   seekTo(seconds:number) {
-//     console.log(seconds);
-//     this.currentSong.currentTime = seconds;
-//   }
-//   changevolume(newVolume:number) {
-//     this.currentSong.volume=newVolume;
-//     this.songVolume.next(newVolume);
-//   }
+  seekTo(seconds:number) {
+    console.log(seconds);
+    this.currentSong.currentTime = seconds;
+  }
+  changevolume(newVolume:number) {
+    this.currentSong.volume=newVolume;
+    this.songVolume.next(newVolume);
+  }
 
-//   formatTime(time: number, format: string = 'mm:ss') {
-//     const momentTime = time * 1000;
-//     return moment.utc(momentTime).format(format);
-//   }
-//   getCurrentSong = ():HTMLAudioElement=>{
-//     return this.currentSong;
-//   }
+  // formatTime(time: number, format: string = 'mm:ss') {
+  //   const momentTime = time * 1000;
+  //   return moment.utc(momentTime).format(format);
+  // }
+  getCurrentSong = ():HTMLAudioElement=>{
+    return this.currentSong;
+  }
 
-//   audioEvents = [
-//     "ended",
-//     "error",
-//     "play",
-//     "playing",
-//     "pause",
-//     "timeupdate",
-//     "canplay",
-//     // "loadedmetadata",
-//     // "loadstart",
-//   ];
+  audioEvents = [
+    "ended",
+    "error",
+    "play",
+    "playing",
+    "pause",
+    "timeupdate",
+    "canplay",
+    // "loadedmetadata",
+    // "loadstart",
+  ];
 
-// getStateReadableDuration = ()=>{
-//   return this.state.readableDuration;
-// }
-// private addEvents(audioElement:any, events:string[], handler:Function) {
-//   events.forEach((event:string) => {
-//     audioElement.addEventListener(event, handler);
-//   });
-// }
+getStateReadableDuration = ()=>{
+  return this.state.readableDuration;
+}
+private addEvents(audioElement:any, events:string[], handler:Function) {
+  events.forEach((event:string) => {
+    audioElement.addEventListener(event, handler);
+  });
+}
 
-// private removeEvents(audioElement:any, events:string[], handler:Function) {
-//   events.forEach((event:string) => {
-//     audioElement.removeEventListener(event, handler);
-//   });
-// }
+private removeEvents(audioElement:any, events:string[], handler:Function) {
+  events.forEach((event:string) => {
+    audioElement.removeEventListener(event, handler);
+  });
+}
 
-// private AudioObservable(audioElement:HTMLAudioElement){  
-//   return new Observable((observer)=>{    
-//     // audioElement.load();
-//     // audioElement.play();
-//     const handler=(event:Event)=>{
-//       this.updateStateEvents(event);
-//       observer.next(event);
-//     }
-//     this.addEvents(audioElement, this.audioEvents, handler);
-//     return () => {
-//       // Stop Playing
-//       audioElement.pause();
-//       audioElement.currentTime = 0;
-//       console.log('observable initialisé');
-//       // remove event listeners
-//       this.removeEvents(audioElement, this.audioEvents, handler);
-//     };
-//   });
-// }
+private AudioObservable(audioElement:HTMLAudioElement){  
+  return new Observable((observer)=>{    
+    // audioElement.load();
+    // audioElement.play();
+    const handler=(event:Event)=>{
+      this.updateStateEvents(event);
+      observer.next(event);
+    }
+    this.addEvents(audioElement, this.audioEvents, handler);
+    return () => {
+      // Stop Playing
+      audioElement.pause();
+      audioElement.currentTime = 0;
+      console.log('observable initialisé');
+      // remove event listeners
+      this.removeEvents(audioElement, this.audioEvents, handler);
+    };
+  });
+}
 
 // playStream(audioElement:HTMLAudioElement) {
 //   // return this.AudioObservable(audioElement).pipe(takeUntil(this.stop$));
