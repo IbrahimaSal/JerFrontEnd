@@ -1,2 +1,118 @@
-<p class="h1 text-white">audio-player works!</p>
-
+<div
+  class="d-flex bg-transparent flex-column justify-content-between align-items-center mt-5 mb-5 w-100"
+  *ngIf="true"
+>
+<div
+style="background-color:black"
+class="w-50 d-flex flex-column justify-content-start align-items-end border border-danger border-5  rounded">
+  <div 
+    style="width:60%" 
+    class="d-flex flex-column flex-grow-1 bg-transparent">
+    <div class="container-fluid d-flex justify-content-evenly bg-transparent h-25">
+      <div class="d-flex justify-content-start align-items-center  w-25 ">
+        <i style="color:white" class="fas fa-comment-alt"></i>
+      </div>
+      <div class="w-25 bg-transparent d-flex justify-content-start align-items-center">
+        <i style="color:white" class="fas fa-heart"></i>
+      </div>
+      <div class="w-25 bg-transparent d-flex justify-content-end align-items-center">
+        <i style="color:white" class="fas fa-share-alt"></i>
+      </div>
+      <div class="w-25 bg-transparent d-flex justify-content-end align-items-center">
+        <i style="color:white" class="fas fa-download"></i>
+      </div>
+    </div>
+    <div class="container-fluid bg-transparent">
+      <b class="text-white">
+          <!-- {{songs[indexOfSongToPlay].songName}} -->
+    </b>
+    </div>        
+    <div class="container-fluid bg-transparent h-25">                                  
+        <input 
+          id="trackTimeSlider"
+          
+          type="range"                
+          min="0" 
+          [value]="0"
+          [max]="100"           
+          step="0.1"
+        >
+    </div>
+    <div class="container-fluid d-flex justify-content-between h-25 bg-transparent">
+      <div class="text-white">
+        <!-- <h6>{{state?.readableCurrentTime}}</h6> -->
+      </div>
+      <div class="text-white">
+        <!-- <h6>{{state?.readableDuration}}</h6> -->
+      </div>       
+    </div>
+  </div>
+</div>
+  <div  
+    style="background-color:red;min-height:15vh;height:15vh;"
+    class="d-flex align-items-center w-50 rounded-3">
+    <div class="w-50 bg-transparent d-flex justify-content-center align-items-center">
+      <img    
+        
+        id="cover"    
+        alt="music-cover"
+        >
+    </div>
+    <div class="container-fluid h-100 bg-transparent">
+      <div class="container-fluid d-flex h-50 bg-transparent align-items-center w-100 p-0">
+        <div 
+          style="background-color: black;"
+          class="btn-group w-100 h-75 d-flex flex-row justify-content-between align-items-center rounded-pill">        
+          <button 
+            
+            class="btn text-white h-50 d-flex align-items-center justify-content-center">
+            <i class="fas fa-backward"></i>
+          </button>
+          <button       
+            
+            class="btn text-white h-50 d-flex align-items-center justify-content-center">
+            <i class="fas fa-stop"></i>
+          </button>
+          <button 
+            
+            class="btn text-white h-50 d-flex align-items-center justify-content-center">
+            <i class="fas fa-undo"></i>
+          </button>
+          <button 
+            
+            *ngIf="true"
+            class="btn text-white h-50 d-flex align-items-center justify-content-center">
+            <i class="fas fa-play"></i>
+          </button>
+          <button 
+            *ngIf="true"
+            
+            class="btn text-white h-50 d-flex align-items-center justify-content-center">
+            <i class="fas fa-pause"></i>
+          </button>
+          <button 
+            
+            class="btn text-white h-50 d-flex align-items-center justify-content-center">
+            <i class="fas fa-forward"></i>
+          </button>
+        </div>
+      </div>
+      <div         
+        class="container-fluid d-flex h-50 bg-transparent align-items-center w-100 p-0">
+        <div 
+          style="background-color: black;"
+          class="h-75  d-flex w-100 flex-row justify-content-between border-5 border-light rounded-pill p-2">
+          <div class="btn text-danger d-flex align-items-center">
+            <i *ngIf="false" class="fas fa-volume-mute"></i>
+            <i *ngIf="false" class="fas fa-volume-off"></i>
+            <i *ngIf="false" class="fas fa-volume-down"></i>
+            <i *ngIf="true" class="fas fa-volume-up"></i>
+          </div>
+          <div class="bg-transparent flex-grow-1 d-flex  align-items-center">
+            <!-- <input id="volumeSlider" type="range" min=0 [value]="this.volumeState" (input)="onVolumeSliderChange($event)" max=1 step=0.01>           -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
