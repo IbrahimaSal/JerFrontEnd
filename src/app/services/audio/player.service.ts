@@ -187,91 +187,91 @@ private AudioObservable(audioElement:HTMLAudioElement){
   });
 }
 
-// playStream(audioElement:HTMLAudioElement) {
-//   // return this.AudioObservable(audioElement).pipe(takeUntil(this.stop$));
-//   return this.AudioObservable(audioElement);
-// }
+playStream(audioElement:HTMLAudioElement) {
+  // return this.AudioObservable(audioElement).pipe(takeUntil(this.stop$));
+  return this.AudioObservable(audioElement);
+}
 
-// playCurrentSong = () => {
-//   // this.currentSong.play();
-//   this.musicInfoFrame='opened';
-//   this.isPlaying=true;
-//   this.playstop='play';  
-//   console.log(this.playstop);
-//   this.observable.next(this.isPlaying);
-//   // this.playStream(this.currentSong).subscribe();
-//   this.currentSong.play();
-// }
+playCurrentSong = () => {
+  // this.currentSong.play();
+  this.musicInfoFrame='opened';
+  this.isPlaying=true;
+  this.playstop='play';  
+  console.log(this.playstop);
+  this.observable.next(this.isPlaying);
+  // this.playStream(this.currentSong).subscribe();
+  this.currentSong.play();
+}
 
 
-// pauseCurrentSong = () => {
-//   this.playstop="pause";
-//   this.currentSong.pause();
-//   this.isPlaying=false;
-//   console.log(this.playstop);
-//   this.observable.next(this.isPlaying); 
-// }
+pauseCurrentSong = () => {
+  this.playstop="pause";
+  this.currentSong.pause();
+  this.isPlaying=false;
+  console.log(this.playstop);
+  this.observable.next(this.isPlaying); 
+}
 
-// nextSong = () => {
-//   this.currentSong.pause();
-//   if(this.indexOfSongToPlay === ( this.songs.length - 1 )){
-//     this.indexOfSongToPlay = 0;
-//   }else{
-//     this.indexOfSongToPlay+=1;
-//   }
-//   this.songindex.next(this.indexOfSongToPlay);
-//   this.currentSong = new Audio(this.songs[this.indexOfSongToPlay].songUrl);
-//   this.currentSong.load();
-//   if(this.musicInfoFrame==='opened'){
-//     this.playstop='zero';
-//   }
-//   this.isPlaying=false;
+nextSong = () => {
+  this.currentSong.pause();
+  if(this.indexOfSongToPlay === ( this.songs.length - 1 )){
+    this.indexOfSongToPlay = 0;
+  }else{
+    this.indexOfSongToPlay+=1;
+  }
+  this.songindex.next(this.indexOfSongToPlay);
+  this.currentSong = new Audio(this.songs[this.indexOfSongToPlay].songUrl);
+  this.currentSong.load();
+  if(this.musicInfoFrame==='opened'){
+    this.playstop='zero';
+  }
+  this.isPlaying=false;
   
-//   this.playStream(this.currentSong).subscribe();
-//   this.stateChange.next(this.state);
-//   this.songDuration.next(this.state.readableDuration);
+  this.playStream(this.currentSong).subscribe();
+  this.stateChange.next(this.state);
+  // this.songDuration.next(this.state.readableDuration);
 
-// }
+}
 
-// previousSong = () => {
-//   this.currentSong.pause();
-//   if(this.musicInfoFrame==='opened'){
-//     this.playstop='zero';
-//   }
-//   if(this.indexOfSongToPlay === 0){
-//     this.indexOfSongToPlay = this.songs.length - 1;
-//   }else{
-//     this.indexOfSongToPlay-=1;
-//   }
-//   // this.currentSong.load();
-//   if(this.isPlaying){
-//     this.currentSong.play();
-//   }
+previousSong = () => {
+  this.currentSong.pause();
+  if(this.musicInfoFrame==='opened'){
+    this.playstop='zero';
+  }
+  if(this.indexOfSongToPlay === 0){
+    this.indexOfSongToPlay = this.songs.length - 1;
+  }else{
+    this.indexOfSongToPlay-=1;
+  }
+  // this.currentSong.load();
+  if(this.isPlaying){
+    this.currentSong.play();
+  }
   
-//   this.currentSong = new Audio(this.songs[this.indexOfSongToPlay].songUrl);
-//   this.songDuration.next(this.formatTime(this.currentSong.duration));
-//   this.currentSong.load();
-//   this.playStream(this.currentSong).subscribe();
-//   this.observable.next(this.isPlaying);
-//   this.songindex.next(this.indexOfSongToPlay);
-//   this.stateChange.next(this.state);
-// }
+  this.currentSong = new Audio(this.songs[this.indexOfSongToPlay].songUrl);
+  // this.songDuration.next(this.formatTime(this.currentSong.duration));
+  this.currentSong.load();
+  this.playStream(this.currentSong).subscribe();
+  this.observable.next(this.isPlaying);
+  this.songindex.next(this.indexOfSongToPlay);
+  this.stateChange.next(this.state);
+}
 
-// stopSong = () => {
-//   this.currentSong.load();
-//   this.isPlaying=false;
-//   this.playstop='stop';
-//   console.log(this.playstop);
-//   this.observable.next(this.isPlaying);
-//   this.stop$.next();
-//   this.playStream(this.currentSong).subscribe();
-//   this.musicInfoFrame="closed";
-// }
+stopSong = () => {
+  this.currentSong.load();
+  this.isPlaying=false;
+  this.playstop='stop';
+  console.log(this.playstop);
+  this.observable.next(this.isPlaying);
+  this.stop$.next();
+  this.playStream(this.currentSong).subscribe();
+  this.musicInfoFrame="closed";
+}
 
-// replaySong = () => {    
-//   this.currentSong.load();
-//   this.currentSong.play();
-//   this.isPlaying=true;
-// }
+replaySong = () => {    
+  this.currentSong.load();
+  this.currentSong.play();
+  this.isPlaying=true;
+}
   
 }
