@@ -7,13 +7,16 @@ import { PlayerService } from 'src/app/services/audio/player.service';
   styleUrls: ['./audio-player.component.scss']
 })
 export class AudioPlayerComponent implements OnInit {
-
   constructor(public playerService:PlayerService){
-    
   }
-
   ngOnInit(): void {
   }
-  
-
+  songs=this.playerService.getSongs();
+  play = () =>{
+    this.songs[0].load()
+    this.songs[0].play()
+  }  
+  pause = () =>{
+    this.songs[0].pause();
+  }
 }
