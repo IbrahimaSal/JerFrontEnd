@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-// import { BehaviorSubject, Subject, Observable } from 'rxjs';
-const moment =require('moment');
+// import * as moment from 'moment';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { StreamState } from 'src/app/interfaces/stream-state';
 // import { takeUntil } from 'rxjs/operators';
@@ -98,7 +97,7 @@ export class PlayerService {
     switch (event.type) {
       case "canplay":
         this.state.duration = this.currentSong.duration;
-        // this.state.readableDuration = this.formatTime(this.state.duration);
+        this.state.readableDuration = this.formatTime(this.state.duration);
         this.state.canplay = true;
         break;        
       case "playing":        
@@ -109,9 +108,9 @@ export class PlayerService {
         break;
       case "timeupdate":
         this.state.currentTime = this.currentSong.currentTime;
-        // this.state.readableCurrentTime = this.formatTime(
-        // this.state.currentTime
-        // );
+        this.state.readableCurrentTime = this.formatTime(
+        this.state.currentTime
+        );
         break;
       case "error":
         this.resetState();
@@ -133,9 +132,12 @@ export class PlayerService {
     this.songVolume.next(newVolume);
   }
 
-  formatTime(time: number, format: string = 'mm:ss') {
-    const momentTime = time * 1000;
-    return moment.utc(momentTime).format(format);
+  // formatTime(time: number, format: string = 'mm:ss') {
+  //   const momentTime = time * 1000;
+  //   return moment.utc(momentTime).format(format);
+  // }
+  formatTime = (time:number) => {
+    return String(time);
   }
   getCurrentSong = ():HTMLAudioElement=>{
     return this.currentSong;
