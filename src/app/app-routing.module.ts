@@ -16,6 +16,7 @@ import { SubscriptionComponent } from './components/subscription/subscription.co
 const routes: Routes = [
   {path:'', component: HomeComponent},
   {path:'cart', component: CartComponent},
+  {path:'login', component: SubscriptionComponent},
   // {path:'services/v1/:id', component: MorelServicesComponent}, 
   { path: 'services', component: MorelServicesComponent ,
     children: [
