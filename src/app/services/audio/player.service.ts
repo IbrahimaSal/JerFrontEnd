@@ -15,7 +15,7 @@ export class PlayerService {
     private cloudService: AudioCloudService
     ) { 
     this.currentSong.load();
-    // this.playStream(this.currentSong).subscribe();
+    this.playStream(this.currentSong).subscribe();
   }
   
 
@@ -42,6 +42,7 @@ export class PlayerService {
   private songindex  : BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   // private songDuration : BehaviorSubject<string> = new BehaviorSubject<string>(this.formatTime(this.currentSong.duration));
+  private songDuration : BehaviorSubject<string> = new BehaviorSubject<string>(String(this.currentSong.duration));
 
   private songVolume: BehaviorSubject<number> = new BehaviorSubject<number>(0.5);
 
@@ -49,9 +50,9 @@ export class PlayerService {
     return this.songVolume;
   }
 
-  // getSongDuration = () =>{
-  //   return this.songDuration;
-  // }
+  getSongDuration = () =>{
+    return this.songDuration;
+  }
 
   getobservable = () =>{
     return this.observable;
@@ -193,13 +194,13 @@ playStream(audioElement:HTMLAudioElement) {
 }
 
 playCurrentSong = () => {
-  // this.currentSong.play();
+  this.currentSong.play();
   this.musicInfoFrame='opened';
   this.isPlaying=true;
   this.playstop='play';  
   console.log(this.playstop);
   this.observable.next(this.isPlaying);
-  // this.playStream(this.currentSong).subscribe();
+  this.playStream(this.currentSong).subscribe();
   this.currentSong.play();
 }
 
@@ -229,7 +230,7 @@ nextSong = () => {
   
   this.playStream(this.currentSong).subscribe();
   this.stateChange.next(this.state);
-  // this.songDuration.next(this.state.readableDuration);
+  this.songDuration.next(this.state.readableDuration);
 
 }
 
