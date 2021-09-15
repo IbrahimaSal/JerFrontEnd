@@ -1,9 +1,10 @@
 <div
   class="d-flex bg-transparent flex-column justify-content-between align-items-center mt-5 mb-5 w-100"
-  *ngIf="true"
+  *ngIf="showPlayer"
 >
 <div
 style="background-color:black"
+[@MusicInfoState]="MusicInfoFrame()"     
 class="w-50 d-flex flex-column justify-content-start align-items-end border border-danger border-5  rounded">
   <div 
     style="width:60%" 
@@ -23,28 +24,26 @@ class="w-50 d-flex flex-column justify-content-start align-items-end border bord
       </div>
     </div>
     <div class="container-fluid bg-transparent">
-      <b class="text-white">
-          <!-- {{songs[indexOfSongToPlay].songName}} -->
-          {{songs[0].songName}}
-    </b>
+      <b class="text-white">{{songs[indexOfSongToPlay].songName}}</b>
     </div>        
     <div class="container-fluid bg-transparent h-25">                                  
         <input 
           id="trackTimeSlider"
-
+          [style]="cursorAdvancement()"
           type="range"                
           min="0" 
-          [value]="0"
-          [max]="100"           
+          [value]="state?.currentTime"
+          [max]="state?.duration" 
+          (input)="onSliderChangeEnd($event)"
           step="0.1"
         >
     </div>
     <div class="container-fluid d-flex justify-content-between h-25 bg-transparent">
       <div class="text-white">
-        <!-- <h6>{{state?.readableCurrentTime}}</h6> -->
+        <h6>{{state?.readableCurrentTime}}</h6>
       </div>
       <div class="text-white">
-        <!-- <h6>{{state?.readableDuration}}</h6> -->
+        <h6>{{state?.readableDuration}}</h6>
       </div>       
     </div>
   </div>
@@ -54,10 +53,10 @@ class="w-50 d-flex flex-column justify-content-start align-items-end border bord
     class="d-flex align-items-center w-50 rounded-3">
     <div class="w-50 bg-transparent d-flex justify-content-center align-items-center">
       <img    
-        
+        [@isPlaying]="playstop()"  
         id="cover"    
         alt="music-cover"
-        >
+        [src]="songs[indexOfSongToPlay].coverUrl">
     </div>
     <div class="container-fluid h-100 bg-transparent">
       <div class="container-fluid d-flex h-50 bg-transparent align-items-center w-100 p-0">
@@ -65,33 +64,34 @@ class="w-50 d-flex flex-column justify-content-start align-items-end border bord
           style="background-color: black;"
           class="btn-group w-100 h-75 d-flex flex-row justify-content-between align-items-center rounded-pill">        
           <button 
-            
+            (click)="previousSong()"
             class="btn text-white h-50 d-flex align-items-center justify-content-center">
             <i class="fas fa-backward"></i>
           </button>
           <button       
-            
+            (click)="stopSong()"
             class="btn text-white h-50 d-flex align-items-center justify-content-center">
             <i class="fas fa-stop"></i>
           </button>
           <button 
-            
+            (click)="replaySong()"
             class="btn text-white h-50 d-flex align-items-center justify-content-center">
             <i class="fas fa-undo"></i>
           </button>
           <button 
-            
-            *ngIf="true"
+            (click)="playCurrentSong()"
+            *ngIf="!isPlaying()"
             class="btn text-white h-50 d-flex align-items-center justify-content-center">
             <i class="fas fa-play"></i>
           </button>
           <button 
-            *ngIf="true"
-            
+            *ngIf="isPlaying()"
+            (click)="pauseCurrentSong()"
             class="btn text-white h-50 d-flex align-items-center justify-content-center">
             <i class="fas fa-pause"></i>
           </button>
-          <button
+          <button 
+            (click)="nextSong()"
             class="btn text-white h-50 d-flex align-items-center justify-content-center">
             <i class="fas fa-forward"></i>
           </button>
@@ -109,7 +109,7 @@ class="w-50 d-flex flex-column justify-content-start align-items-end border bord
             <i *ngIf="true" class="fas fa-volume-up"></i>
           </div>
           <div class="bg-transparent flex-grow-1 d-flex  align-items-center">
-            <!-- <input id="volumeSlider" type="range" min=0 [value]="this.volumeState" (input)="onVolumeSliderChange($event)" max=1 step=0.01>           -->
+            <input id="volumeSlider" type="range" min=0 [value]="this.volumeState" (input)="onVolumeSliderChange($event)" max=1 step=0.01>          
           </div>
         </div>
       </div>

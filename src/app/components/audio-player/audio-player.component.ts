@@ -35,10 +35,11 @@ export class AudioPlayerComponent implements OnInit {
     return value*duration/1000
   }
   
-  // readableTime=(value:number):string =>{
-  //   const momentTime = value * 1000;
-  //   return moment.utc(momentTime).format('mm:ss');
-  // }
+  readableTime=(value:number):string =>{
+    // const momentTime = value * 1000;
+    // return moment.utc(momentTime).format('mm:ss');
+    return `${value}`
+  }
   
   getCurrentSong = this.playerService.getCurrentSong;
   
