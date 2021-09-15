@@ -134,7 +134,7 @@ export class PlayerService {
   formatTime(time:number) {
     // const momentTime = time * 1000;
     // return moment.utc(momentTime).format(format);
-    return time+"";
+    return time?`${Math.floor(time)} s`:'0 s';
   }
   getCurrentSong = ():HTMLAudioElement=>{
     return this.currentSong;

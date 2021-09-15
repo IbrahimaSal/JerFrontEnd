@@ -22,10 +22,8 @@ import { PlayerService } from 'src/app/services/audio/player.service';
       ]
     ),
     trigger('MusicInfoState', [
-      state('opened', style({  opacity: 1 , 
-        height: '15vh', width:'90%',
-       })),          
-      state('closed', style({  opacity: 0, height: '0', width:'85%',})),
+      state('opened', style({  opacity: 1 , height: '15vh', width:'90%' })),          
+      state('closed', style({  opacity: 0, height: '0', width:'85%' })),
       transition('opened <=> closed', animate('1500ms ease-in-out')),
     ]),
     trigger('isPlaying', [
@@ -50,6 +48,7 @@ export class AudioPlayerComponent implements OnInit {
   state:StreamState | undefined;
   dura:string="";
   volumeState:number=0.5;
+  closed:string="closed";
   constructor(public playerService:PlayerService) {        
     this.playerService.getSongIndex().subscribe((value)=>{
       console.log(value);
@@ -76,7 +75,7 @@ export class AudioPlayerComponent implements OnInit {
   readableTime=(value:number):string =>{
     // const momentTime = value * 1000;
     // return moment.utc(momentTime).format('mm:ss');
-    return `${value}`
+    return `${Math.floor(value)}`
   }
   
   getCurrentSong = this.playerService.getCurrentSong;
