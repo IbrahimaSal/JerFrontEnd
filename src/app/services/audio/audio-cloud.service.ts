@@ -13,12 +13,11 @@ constructor() { }
     // tslint:disable-next-line: max-line-length
     {
       id: 0,
-    songName: 'AsstalaVista Baby',
-    coverUrl: `assets/MusicCover/Asstalavista Baby.jpg`,
+    songName: 'Asstalavista',
+    coverUrl: `assets/MusicCover/Asstalavista.jpg`,
     songUrl: `https://metiissecoresongs.s3.eu-west-3.amazonaws.com/songs/Asstalavista+Baby.mp3`,
     },
     {
-  
       id: 1,
     songName: 'Catalogues',
     coverUrl: `assets/MusicCover/Catalogues.jpg`,

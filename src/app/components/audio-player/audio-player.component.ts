@@ -48,7 +48,6 @@ export class AudioPlayerComponent implements OnInit {
   state:StreamState | undefined;
   dura:string="";
   volumeState:number=0.5;
-  closed:string="closed";
   constructor(public playerService:PlayerService) {        
     this.playerService.getSongIndex().subscribe((value)=>{
       console.log(value);
