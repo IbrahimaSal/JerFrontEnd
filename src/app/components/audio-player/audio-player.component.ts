@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { StreamState } from 'src/app/interfaces/stream-state';
@@ -6,7 +7,44 @@ import { PlayerService } from 'src/app/services/audio/player.service';
 @Component({
   selector: 'app-audio-player',
   templateUrl: './audio-player.component.html',
-  styleUrls: ['./audio-player.component.scss']
+  styleUrls: ['./audio-player.component.scss'],
+  animations: [
+    trigger(
+      'enterAnimation', [
+        transition(':enter', [
+          style({transform: 'translateY(100%)', opacity: 0}),
+          animate('500ms', style({transform: 'translateY(0)', opacity: 1}))
+        ]),
+        transition(':leave', [
+          style({transform: 'translateY(0)', opacity: 1}),
+          animate('500ms', style({transform: 'translateY(100%)', opacity: 0}))
+        ])
+      ]
+    ),
+    trigger('MusicInfoState', [
+      state('opened', style({  opacity: 1 , 
+        height: '15vh', width:'90%',
+       })),          
+      state('closed', style({  opacity: 0, height: '0', width:'85%',})),
+      transition('opened <=> closed', animate('1500ms ease-in-out')),
+    ]),
+    trigger('isPlaying', [
+      state('play', style({  opacity: 1, 
+        transform: 'translateY(-50%)',
+        animation: 'rotate 3s linear infinite',
+        animationPlayState: 'running' 
+      })),
+      state('pause', style({  opacity: 1 , 
+        animation: 'rotate 3s linear infinite',
+        animationPlayState: 'paused' 
+      })),
+      state('zero', style({  opacity: 1, transform: 'translateY(-50%) rotate(0deg)'})),
+      state('stop', style({  opacity: 1, transform: 'translateY(0%)', })),
+      transition('play <=> stop', animate('1500ms ease-in-out')),
+      // transition('play <=> pause', animate('1ms ease-in-out')),
+      transition('pause <=> stop', animate('1500ms ease-in-out')),
+    ]),
+  ],
 })
 export class AudioPlayerComponent implements OnInit {
   state:StreamState | undefined;
