@@ -73,9 +73,26 @@ a{
 
 button{
     width: 35%;
+    height:10vh;
+}
+@mixin responsive-box($height){
+  position: relative;
+  &:before{
+    content: '';
+    display: block;
+    padding-top: $height;
+  }
 }
 @media (max-width: 576px) { 
     span{
         display:none;
     }
+    button{
+      width:30%;
+      @include responsive-box(100%);
+      border-radius: 50%!important;
+      display: flex;
+      justify-content: center;
+      align-items:center;
+  }
  }

@@ -69,21 +69,34 @@
             </span>
         </button>
     </div>  
-    <div class="bg-transparent d-flex justify-content-center">  
-        <button style='background-color:red' class="text-white rounded-pill d-flex justify-content-center align-items-center">
+    <div class="bg-transparent d-flex justify-content-center" >  
+        <!-- <button 
+        style='background-color:red' 
+        class="text-white rounded-pill d-flex justify-content-around">
+            <i class="fas fa-info fa-2x "></i>
             <span class="h3">                
-                Je veux en savoir plus !                
+                En savoir plus !                
             </span>
-        </button>
+        </button> -->
+
+        <button style='background-color:red'           
+          class='rounded-pill text-white' 
+          aria-label="En savoir plus"
+          routerLink="/services/music">
+            <i  class="fas fa-info h3" ></i>             
+            <span class="h3 m-2">
+                En savoir plus
+            </span>
+        </button>     
     </div>
-    <div class="d-flex justify-content-around">  
+    <div class="d-flex justify-content-around ">  
         <button style='background-color:red' class='rounded-pill text-white' routerLink="/services/clothes">
             <i class='fas fa-tshirt h3'></i>
             <span class="h3">
-                Creation vetements
+                Fashion
             </span>
         </button>
-        <button style='background-color:red' class='rounded-pill text-white' routerLink="/services/xcreations">
+        <button style='background-color:red' class=' rounded-pill text-white' routerLink="/services/xcreations">
             <i class="fa fa-exclamation-triangle h3"></i>
             <span  class="h3">
                 X-medias

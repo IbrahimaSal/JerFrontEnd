@@ -24,6 +24,9 @@ import { Menu1Component } from './menu1/menu1.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { GalleriesComponent } from './services/galleryservices/galleries/galleries.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthenticationService } from './services/user/authentication.service';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -53,10 +56,12 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     AppRoutingModule,
+    HttpClientModule,
     NgbModule
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

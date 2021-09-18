@@ -62,10 +62,10 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
   }
 
-  .fa-whatsapp {
-    color: white;
-    background-color: #4FCE5D;
-    border-radius:150%;
+  .fa-soundcloud {
+    color: orange;
+    background-color: transparent;
+    // border-radius:150%;
     font-size: x-large;
   }
 
@@ -89,10 +89,10 @@
     font-size: x-large;
   }
 
-  .fa-home{
-    color:green;
-    font-size: x-large;
-  }
+  // .fa-home{
+  //   color:white;
+  //   font-size: x-large;
+  // }
 
 @media screen and (max-width: 768px){
   span{
