@@ -13,13 +13,16 @@ import { ModelesMasculinsComponent } from './components/modeles-masculins/modele
 import { ModelesFemininsComponent } from './components/modeles-feminins/modeles-feminins.component';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { AuthenticationGuard } from './Guards/authentication.guard';
+
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
   {path:'cart', component: CartComponent},
   {path:'login', component: SubscriptionComponent},
   // {path:'services/v1/:id', component: MorelServicesComponent}, 
-  { path: 'services', component: MorelServicesComponent ,
+  { path: 'services', component: MorelServicesComponent,
+    canActivate: [AuthenticationGuard],
     children: [
       { path:'music', component: AudioPlayerComponent },
       { path: 'xcreations', component: XcreationComponent },

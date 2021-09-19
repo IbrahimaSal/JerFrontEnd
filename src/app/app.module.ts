@@ -24,9 +24,11 @@ import { Menu1Component } from './menu1/menu1.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { GalleriesComponent } from './services/galleryservices/galleries/galleries.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthenticationService } from './services/user/authentication.service';
 import { FormsModule } from '@angular/forms';
+import { AuthenticationGuard } from './Guards/authentication.guard';
+import { TokenInterceptorService } from './services/user/token-interceptor.service';
 
 
 @NgModule({
@@ -61,7 +63,16 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     NgbModule
   ],
-  providers: [AuthenticationService],
+  providers: [
+    AuthenticationService, 
+    AuthenticationGuard,
+    { 
+      provide:HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

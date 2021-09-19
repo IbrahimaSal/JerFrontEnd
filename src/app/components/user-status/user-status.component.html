@@ -1,4 +1,20 @@
-<div class="container-fluid d-flex justify-content-between align-items-center mt-4 mb-4">
-    <button class="btn bg-danger text-white" routerLink="/login"> Se connecter</button>    
-    <button class="btn bg-danger text-white">PANIER {{panier}}</button>
+<div style="padding:0" class="container-fluid d-flex justify-content-between align-items-center mt-4 mb-4">
+    <button 
+        *ngIf="!loggedIn" 
+        style="background-color:red;left:0;"
+        class="btn text-white l" 
+        routerLink="/login">        
+        Se connecter        
+    </button>    
+    <button 
+        *ngIf="loggedIn" 
+        style="background-color:red"
+        class="btn text-white" 
+        routerLink="/services/userprofile">        
+        Profil
+    </button>    
+    <button
+        style="background-color:red"
+        routerLink="/cart" 
+        class="btn text-white">PANIER {{panier}}</button>
 </div>
