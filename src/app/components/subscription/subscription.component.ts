@@ -14,10 +14,11 @@ export class SubscriptionComponent implements OnInit {
   // private _registerUrl= 'http://localhost:1337/users/register';
   registerUserData :IUser= {
     username: '',
+    email:'',
     password: ''
   };
-  loginUserData :IUser ={
-    username: '',
+  loginUserData :any ={
+    emailorusername: '',    
     password: '' 
   }
   login:boolean=true;
