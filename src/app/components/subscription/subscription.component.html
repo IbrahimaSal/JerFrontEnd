@@ -1,114 +1,159 @@
 <h1 class="text-white">Connectez vous ou inscrivez vous pour acceder aux services! </h1>
-<div  style="height: 75vh;"class="container-fluid d-flex justify-content-center align-items-center">
-    <div class="d-flex flex-column bg-transparent"  
-         style="height:50vh;width:25vw;min-width:250px;border-radius:5vh;border-style:solid;border-color: red;">
-        <div class="bg-transparent d-flex justify-content-around mt-4" style="height:10%">
+<div  style="height: 75vh;min-height:600px"class="container-fluid d-flex justify-content-center align-items-center">
+    <div class="d-flex flex-column bg-transparent justify-content-around align-items-center"  
+         style="min-height:80%;height:60vh;width:25vw;min-width:250px;border-radius:5vh;border-style:solid;border-color: red;">
+        <div class="bg-transparent d-flex justify-content-between p-0 mt-4" style="height:10%;width:90%">
             <button style="background-color: red;color:black"
-                (click)="switchToLogin()" 
+                (click)="switchToLogin()"             
                 class="button w-25 d-flex justify-content-center align-items-center  rounded-pill">
-                login
+                Se connecter
             </button>
             <button 
                 style="color:red;background-color:transparent;border-style: solid;border-color: red;"
                 (click)="switchToRegister()" 
                 class="button w-25 d-flex justify-content-center align-items-center rounded-pill">
-                register
+                S'enregistrer
             </button>
         </div> 
-        <form *ngIf="!login" class="mb-1 h-75 w-100 d-flex flex-column align-items-center">
-            <div style="height:100%" class="bg-transparent d-flex flex-column justify-content-around align-items-center">
-                <div class="form-group input-group bg-danger">
-                    <div class="input-group-prepend bg-black">
-                        <span class="input-group-text bg-light h-100"><i class="fa fa-user"></i> </span>
+        <form *ngIf="!login" class="mt-1 mb-1 h-75 w-100 d-flex flex-column justify-content-around align-items-center">
+            <div style="height:100%" class="bg-transparent w-100 d-flex flex-column justify-content-around align-items-center">
+                <div class="d-flex p-1 rounded-pill" 
+                    style="width:90%;border-color: red; border-style: solid;background-color:transparent">
+                    <div class=" bg-transparent " style="border-style: solid; border-color:transparent;">
+                        <span class="input-group-text h-100 bg-transparent border-0"> 
+                            <i style="color:red" class="fa fa-user border-0"></i> 
+                        </span>
                     </div>
-                    <input name="username" 
+                    <input 
+                        name="username"
+                        required="true"
+                        (input)="checkUserName($event)"                        
+                        placeholder="pseudo"
                         [(ngModel)]="registerUserData.username"
-                        class="form-control" 
-                        placeholder="username" 
+                        class="w-75 fs-6"                          
+                        style="background-color:transparent;color:red;border-color: transparent;border-width: 0ch;"
                         type="text">
                 </div>
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text h-100"> 
-                            <i class="fa fa-envelope"></i> 
+                <span style="color:orange">{{userNameErrorMessage}}</span>
+                <div class="d-flex p-1 rounded-pill" 
+                style="width:90%;border-color: red; border-style: solid;background-color:transparent">
+                    <div class=" bg-transparent " style="border-style: solid; border-color:transparent;">
+                        <span class="input-group-text h-100 bg-transparent border-0"> 
+                            <i style="color:red" class="fa fa-envelope border-0"></i> 
                         </span>
                     </div>
-                    <input [(ngModel)]="registerUserData.email"
-                    class="form-control" 
-                    placeholder="email" 
-                    type="text">
+                    <input name="email"
+                        (input)="checkEmail($event)"
+                        [(ngModel)]="registerUserData.email"
+                        placeholder="email"
+                        ngModel [email]="true"
+                        required="true"
+                        class="w-75 fs-6"                          
+                        style="background-color:transparent;color:red;border-color: transparent;border-width: 0ch;"
+                        type="email">                        
                 </div>
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text h-100">
-                            <i class="fa fa-lock"></i> 
+                <span style="color:orange">{{emailErrorMessage}}</span>
+                <div class="d-flex p-1 rounded-pill" 
+                    style="width:90%;border-color: red; border-style: solid;background-color:transparent">
+                    <div class=" bg-transparent " style="border-style: solid; border-color:transparent;">
+                        <span class="input-group-text h-100 bg-transparent border-0"> 
+                            <i style="color:red" class="fa fa-lock border-0"></i> 
                         </span>
                     </div>
-                    <input 
-                        class="form-control" 
+                    <input name="password"
+                        required="true"
                         [(ngModel)]="registerUserData.password"
-                        name="password" 
-                        placeholder="Creez un mot de passe s'il vous plait" 
+                        (input)="checkPassword($event)"                        
+                        placeholder="mot de passe"
+                        class="w-75 fs-6"                          
+                        style="background-color:transparent;color:red;border-color: transparent;border-width: 0ch;"
                         type="password">
-                </div> 
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text h-100"> 
-                            <i class="fa fa-lock"></i> 
+                </div>
+                <span [style.color]="passWordError.color">{{passWordError.message}}</span>
+                <div 
+                    class="d-flex p-1 rounded-pill" 
+                    style="width:90%;border-color: red; border-style: solid;background-color:transparent">
+                    <div class=" bg-transparent " style="border-style: solid; border-color:transparent;">
+                        <span class="input-group-text h-100 bg-transparent border-0"> 
+                            <i style="color:red" class="fa fa-lock border-0"></i> 
                         </span>
                     </div>
                     <input 
-                        class="form-control"  
-                        placeholder="Repeat password" 
+                        name="repeatedpassword"
+                        required="true"
+                        (input)="checkRepeatedPassWord($event)"
+                        placeholder="confirmer mot de passe"
+                        class="w-75 fs-6"                          
+                        style="background-color:transparent;color:red;border-color: transparent;border-width: 0ch;"
                         type="password">
                 </div>
+                <span [style.color]="repeatedPassWordError.color">{{repeatedPassWordError.message}}</span>
             </div>
             <div class="container-fluid d-flex justify-content-center align-items-center flex-column">
                 <button 
                     style="background-color:red" 
                     class="rounded-pill w-50 text-white"
+                    [disabled]="!resgisterEnabled()"
                     (click)="registerUser()">
-                    Register
+                    Créer un compte
                 </button>
                 <!-- <a class="text-white">Forgot password ?</a> -->
             </div>
         </form>
-        <form *ngIf="login"  class="mb-1 h-75 w-100 d-flex flex-column align-items-center">
-            <div style="height:100%" class="bg-transparent d-flex flex-column justify-content-around align-items-center">
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text h-100"> 
-                            <i class="fa fa-envelope"></i> 
+        <form *ngIf="login"  class="mb-1 h-75 w-100 bg-transparent d-flex flex-column align-items-center">
+            <div style="height:100%" class="bg-transparent w-100 d-flex flex-column justify-content-around align-items-center">
+                <div class="d-flex p-1 rounded-pill" 
+                style="width:90%;border-color: red; border-style: solid;background-color:transparent">
+                    <div class=" bg-transparent " style="border-style: solid; border-color:transparent;">
+                        <span class="input-group-text h-100 bg-transparent border-0"> 
+                            <i style="color:red" class="fa fa-envelope border-0"></i> 
                         </span>
                     </div>
-                    <input name="emailorusername" 
-                        [(ngModel)]="loginUserData.emailorusername"  
-                        class="form-control" 
-                        placeholder="Nom d'utilisateur" 
+                    <input name="emailorusername"
+                        placeholder="pseudo ou email"
+                        [(ngModel)]="loginUserData.emailorusername"
+                        class="w-75 fs-6"                          
+                        style="background-color:transparent;color:red;border-color: transparent;border-width: 0ch;"
                         type="text">
                 </div>
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text h-100"> 
-                            <i class="fa fa-lock"></i> 
+                <div 
+                    class="d-flex p-1 rounded-pill" 
+                    style="width:90%;border-color: red; border-style: solid;background-color:transparent">
+                    <div class=" bg-transparent " style="border-style: solid; border-color:transparent;">
+                        <span class="input-group-text h-100 bg-transparent border-0"> 
+                            <i style="color:red" class="fa fa-lock border-0"></i> 
                         </span>
                     </div>
-                    <input class="form-control" 
-                        [(ngModel)]="loginUserData.password" 
-                        name="password" 
-                        placeholder="Create password" 
+                    <input name="password"
+                        [(ngModel)]="loginUserData.password"
+                        class="w-75 fs-6" 
+                        placeholder="mot de passe"                         
+                        style="background-color:transparent;color:red;border-color: transparent;border-width: 0ch;"
                         type="password">
-                </div> 
+                </div>
+                <span [style.color]="'red'" [style.display]="!loginfailed?'none':'block'">
+                    Nom d'utilisateur ou mot de passe incorrects !
+                </span>
             </div>
             <div class="container-fluid d-flex justify-content-center align-items-center flex-column">
                 <button 
                     style="background-color:red" 
                     class="rounded-pill w-50 text-white" 
                     (click)="loginUser()">
-                    Login
+                    Se connecter
                 </button>
-                <a class="text-white">Forgot password ?</a>
+                <a class="text-white">Mot de passe oublié?</a>
             </div>
         </form>
     </div>
+</div>
+
+
+
+<div>
+    <ul>
+        <li style="color:white" *ngFor="let username of allUsersNames">
+            {{username}}
+        </li>
+    </ul>
 </div>

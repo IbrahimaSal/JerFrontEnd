@@ -4,6 +4,13 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    // "type":"module",
+    "paths": {
+      "path": [
+        "./node_modules/path-browserify",
+        "./node_modules/node-fetch/src/utils"
+      ]
+    },
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitReturns": true,

@@ -22,12 +22,18 @@
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "bootstrap": "^5.1.0",
+    "check-password-strength": "^2.0.3",
     "cors": "^2.8.5",
+    "crypto-browserify": "^3.12.0",
     "font-awesome": "^4.7.0",
+    "node-fetch": "^3.0.0",
     "npm": "^7.21.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
+  },
+  "browser": {
+    "crypto": false
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.2.2",
