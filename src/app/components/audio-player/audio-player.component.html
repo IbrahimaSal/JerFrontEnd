@@ -20,7 +20,10 @@ class="w-50 d-flex flex-column justify-content-start align-items-end border bord
         <i style="color:white" class="fas fa-share-alt"></i>
       </div>
       <div class="w-25 bg-transparent d-flex justify-content-end align-items-center">
-        <i style="color:white" class="fas fa-download"></i>
+        <button class="bg-transparent border-0" (click)="downloadcurrentsong()">
+        <i style="color:white" class="fas fa-download">                                
+        </i>
+        </button>      
       </div>
     </div>
     <div class="container-fluid bg-transparent">
@@ -136,24 +139,57 @@ class="w-50 d-flex flex-column justify-content-start align-items-end border bord
       </ng-template>
       <ng-template ngbPanelContent>
         <div class="d-flex justify-content-between align-items-center h-100 w-100 m-0 bg-transparent">
-          <img 
-            [src]="song.coverUrl" 
-            class="rounded-circle"
-            style="width:100px;height:100px;"/>
-          <div style="width:50%;" id="peak{{song.id}}"></div>
+          <div class="w-25">
+            <img 
+              [src]="song.coverUrl"                                   
+              id="coverInList"/>
+          </div>
+          <div class="w-50 bg-transparent">
+            <input 
+            *ngIf="song.id === indexOfSongToPlay"
+            id="trackTimeSlider"
+            [style]="cursorAdvancement()"
+            type="range"                
+            min="0" 
+            [value]="state?.currentTime"
+            [max]="state?.duration" 
+            (input)="onSliderChangeEnd($event)"
+            step="0.1"
+            >
+          </div>
           <div 
-            class="btn-group rounded bg-transparent d-flex bg-warning flex-row justify-content-end align-items-center">
-            <button class="stopWaveButton bg-transparent border-0 text-white">
-              <i class="fas fa-stop"></i>
-            </button>
-            <button (click)="replaySong()" class="bg-transparent border-0 text-white">
-              <i class="fas fa-undo"></i>
-            </button>
-            <button 
-              class="playWaveButton bg-transparent border-0 text-white">
-              <i class="fas fa-play"></i>/
-              <i class="fas fa-pause"></i>
-            </button>
+            class="w-25 btn-group rounded bg-transparent d-flex bg-warning flex-row justify-content-end align-items-center">
+            <div class="w-50 d-flex flex-column">
+              <button 
+                (click)="stopSong()"
+                class="stopWaveButton bg-transparent border-0 text-white">
+                <i class="fas fa-stop"></i>
+              </button>
+              <button 
+                (click)="replaySong()" 
+                class="bg-transparent border-0 text-white">
+                <i class="fas fa-undo"></i>
+              </button>
+            </div>
+            <div class="w-50 d-flex flex-column">
+              <button 
+                *ngIf="!isSongPlaying(song.id)"
+                (click)="playSongByIndex(song.id)"
+                class="playWaveButton bg-transparent border-0 text-white">
+                <i class="fas fa-play"></i>              
+              </button>
+              <button 
+                *ngIf="isSongPlaying(song.id)"
+                (click)="pauseCurrentSong()"
+                class="playWaveButton bg-transparent border-0 text-white">              
+                <i class="fas fa-pause"></i>
+              </button>
+              <button 
+                (click)="downloadSongByIndex(song.id)"
+                class="playWaveButton bg-transparent border-0 text-white">              
+                <i class="fas fa-download"></i>
+              </button>
+            </div>
             </div>
           </div>
         </ng-template>

@@ -29,6 +29,7 @@ import { AuthenticationService } from './services/user/authentication.service';
 import { FormsModule } from '@angular/forms';
 import { AuthenticationGuard } from './Guards/authentication.guard';
 import { TokenInterceptorService } from './services/user/token-interceptor.service';
+import { FileSaverModule } from 'ngx-filesaver';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { TokenInterceptorService } from './services/user/token-interceptor.servi
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    FileSaverModule
   ],
   providers: [
     AuthenticationService, 

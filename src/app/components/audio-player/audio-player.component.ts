@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { StreamState } from 'src/app/interfaces/stream-state';
 import { PlayerService } from 'src/app/services/audio/player.service';
@@ -26,6 +26,17 @@ import { PlayerService } from 'src/app/services/audio/player.service';
       state('closed', style({  opacity: 0, height: '0', width:'85%' })),
       transition('opened <=> closed', animate('1500ms ease-in-out')),
     ]),
+    trigger('isPlayingInList', [
+      state('turning', style({       
+        animation: 'rotate 3s linear infinite',
+        animationPlayState: 'running' 
+      })),
+      state('paused', style({  
+        animation: 'rotate 3s linear infinite',
+        animationPlayState: 'paused' 
+      })),
+      state('zero', style({ transform: 'rotate(0deg)'})),            
+    ]),
     trigger('isPlaying', [
       state('play', style({  opacity: 1, 
         transform: 'translateY(-50%)',
@@ -42,12 +53,14 @@ import { PlayerService } from 'src/app/services/audio/player.service';
       // transition('play <=> pause', animate('1ms ease-in-out')),
       transition('pause <=> stop', animate('1500ms ease-in-out')),
     ]),
+    
   ],
 })
 export class AudioPlayerComponent implements OnInit {
   state:StreamState | undefined;
   dura:string="";
   volumeState:number=0.5;
+  playin:boolean=false;
   constructor(public playerService:PlayerService) {        
     this.playerService.getSongIndex().subscribe((value)=>{
       console.log(value);
@@ -62,7 +75,7 @@ export class AudioPlayerComponent implements OnInit {
     });
     this.playerService.getSongVolume().subscribe((volume:number)=>{this.volumeState=volume;console.log(this.volumeState);});
   }
-  
+
   value = () : number => {   
     return (this.state?.currentTime  && this.state?.duration)?1000*(this.state.currentTime/this.state.duration):0;
   }
@@ -71,9 +84,7 @@ export class AudioPlayerComponent implements OnInit {
     return value*duration/1000
   }
   
-  readableTime=(value:number):string =>{
-    // const momentTime = value * 1000;
-    // return moment.utc(momentTime).format('mm:ss');
+  readableTime=(value:number):string =>{    
     return `${Math.floor(value)}`
   }
   
@@ -85,14 +96,14 @@ export class AudioPlayerComponent implements OnInit {
   } 
   getStateReadableDuration = this.playerService.getStateReadableDuration;
   
-  playin:boolean=false;
-  
   songs=this.playerService.getSongs(); 
   
   playstop = () => {
     return this.playerService.playstop;
   }
-  
+  turnpause = () => {
+    return this.playerService.turnpause;
+  }
   MusicInfoFrame = () =>{
     return this.playerService.musicInfoFrame;
   }
@@ -101,27 +112,30 @@ export class AudioPlayerComponent implements OnInit {
   
   indexOfSongToPlay=this.playerService.indexOfSongToPlay;
   
-  isPlaying= () =>{return this.playerService.isPlaying;}
+  isPlaying = ():boolean =>{return this.playerService.isPlaying;}
   previousSong=this.playerService.previousSong;
   nextSong=this.playerService.nextSong;
   stopSong=this.playerService.stopSong;
   playCurrentSong=this.playerService.playCurrentSong;
+  playSongByIndex=this.playerService.playSongByIndex;
   replaySong=this.playerService.replaySong;
   pauseCurrentSong= this.playerService.pauseCurrentSong;
+  downloadcurrentsong=this.playerService.downloadcurrentsong;
+  downloadSongByIndex=this.playerService.downloadSongByIndex;
+  isSongPlaying = (index:number) :boolean=>{
+    const result=(index===this.indexOfSongToPlay && this.isPlaying());    
+    return result;
+  }
   
   onSliderChangeEnd(change:any) {
-    // console.log(`change value:${change.value}`);
     this.playerService.seekTo(change.target.value);
-    console.log(`state : ${this.state?.currentTime}`);
-    // this.time(change.value, this.getCurrentSong().duration)
+    console.log(`state : ${this.state?.currentTime}`);    
   }
-  onVolumeSliderChange(change:any) {
-    // console.log(`change value:${change.value}`);
-    this.playerService.changevolume(change.target.value);
-    // this.time(change.value, this.getCurrentSong().duration)
+  onVolumeSliderChange(change:any) {    
+    this.playerService.changevolume(change.target.value);    
   }
   
-  cursorAdvancement = ():string=>{
+  cursorAdvancement = ():string => {
     const percentage=(this.state?.duration && this.state.currentTime)?(this.state.currentTime*100)/(this.state?.duration):0;
     return `background-image: -webkit-gradient(linear,
       left top, 
