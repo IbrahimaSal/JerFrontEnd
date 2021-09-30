@@ -71,7 +71,7 @@ a{
     height: 100%;
 } */
 
-button{
+.bouton{
     width: 35%;
     height:10vh;
 }
@@ -87,7 +87,7 @@ button{
     span{
         display:none;
     }
-    button{
+    .bouton{
       width:30%;
       @include responsive-box(100%);
       border-radius: 50%!important;

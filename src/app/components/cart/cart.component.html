@@ -1,1 +1,12 @@
-<h1 class="text-white">Il n' y a rien dans votre panier!</h1>
+<h1 class="text-white">{{message}}</h1>
+<ul class="text-white">
+    <li *ngFor="let product of listOfProducts()">
+        {{abonnements[product-1].nom}} : {{abonnements[product-1].prix}}€ 
+        <button (click)="removeProductFromCart(product)">
+            supprimer du panier
+        </button>
+    </li>
+    
+</ul>
+
+<h1 *ngIf="totalPanier>0" class="text-white">total: {{totalPanier}}€</h1>

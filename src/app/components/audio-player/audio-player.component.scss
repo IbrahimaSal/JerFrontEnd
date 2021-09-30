@@ -26,17 +26,16 @@
 
 #cover{
   @include responsive-box(100%);
-  // $width: 150px;
-  // height: $width;
   width:15vh;
   border-width: 2vh;
   border-style: solid;
   border-color:red;
   border-radius:50%;
-  // height: 100px;
-  // width: 100px;
-  // position:absolute;
-  // top:-25%;
+}
+#coverInList{
+  @include responsive-box(100%);
+  width:90%;
+  border-radius:50%;
 }
 #imagecontainer{
   // position:relative;

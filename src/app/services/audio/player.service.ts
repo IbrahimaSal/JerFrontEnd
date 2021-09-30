@@ -4,6 +4,8 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { StreamState } from 'src/app/interfaces/stream-state';
 import { takeUntil } from 'rxjs/operators';
 import { AudioCloudService } from './audio-cloud.service';
+import { FileSaverService } from 'ngx-filesaver';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,9 @@ import { AudioCloudService } from './audio-cloud.service';
 export class PlayerService {
 
   constructor(
-    private cloudService: AudioCloudService
+    private cloudService: AudioCloudService,
+    private _httpClient: HttpClient,
+    private _FileSaverService: FileSaverService
     ) { 
     this.currentSong.load();
     this.playStream(this.currentSong).subscribe();
@@ -27,6 +31,7 @@ export class PlayerService {
   musicInfoFrame:string = 'closed';
 
   playstop:string = 'stop';
+  turnpause:string= "zero";
 
   indexOfSongToPlay = 0;
 
@@ -196,15 +201,31 @@ playCurrentSong = () => {
   this.musicInfoFrame='opened';
   this.isPlaying=true;
   this.playstop='play';  
+  this.turnpause='turning';
   console.log(this.playstop);
   this.observable.next(this.isPlaying);
   // this.playStream(this.currentSong).subscribe();
   this.currentSong.play();
 }
 
+playSongByIndex =(indexOfSong:number) =>{
+  if(indexOfSong !== this.indexOfSongToPlay){
+    this.stopSong();
+    this.indexOfSongToPlay=indexOfSong;    
+    this.songindex.next(this.indexOfSongToPlay);
+    this.currentSong = new Audio(this.songs[this.indexOfSongToPlay].songUrl);
+    this.currentSong.load();
+  }
+  this.playStream(this.currentSong).subscribe();
+  this.stateChange.next(this.state);
+  this.songDuration.next(this.state.readableDuration);
+  this.playCurrentSong();
+}
+
 
 pauseCurrentSong = () => {
   this.playstop="pause";
+  this.turnpause="paused";
   this.currentSong.pause();
   this.isPlaying=false;
   console.log(this.playstop);
@@ -223,6 +244,7 @@ nextSong = () => {
   this.currentSong.load();
   if(this.musicInfoFrame==='opened'){
     this.playstop='zero';
+    this.turnpause='zero';
   }
   this.isPlaying=false;
   
@@ -260,6 +282,7 @@ stopSong = () => {
   this.currentSong.load();
   this.isPlaying=false;
   this.playstop='stop';
+  this.turnpause='stop';
   console.log(this.playstop);
   this.observable.next(this.isPlaying);
   this.stop$.next();
@@ -272,5 +295,23 @@ replaySong = () => {
   this.currentSong.play();
   this.isPlaying=true;
 }
-  
+downloadcurrentsong = () =>{
+  this.downloadSongByIndex(this.indexOfSongToPlay);
+}
+downloadSongByIndex = (indexOfSongToDownload:number) => {
+  const fileName = `${this.songs[indexOfSongToDownload].songName}`;
+  const requestOptions = {
+    headers: new HttpHeaders({ 
+      'Access-Control-Allow-Origin':'*',      
+    })
+  };
+  this._httpClient.get(`${this.songs[indexOfSongToDownload].songUrl}`, {
+    headers: requestOptions.headers,
+    observe: 'response',
+    responseType: 'blob'
+  }).subscribe(response => {
+      this._FileSaverService.save(response.body, fileName);
+  });
+  return;
+}
 }
