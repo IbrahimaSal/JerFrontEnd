@@ -22,9 +22,4 @@ export class UserStatusComponent implements OnInit {
   totalPanier:number=0;
   loggedIn:boolean = this.authenticationService.loggedIn();
 
-  panier = () :number=>{
-    const total=Number(JSON.parse(localStorage.getItem('cart')||'{produits:[],total:0,message:"Rien dans le panier"}').total);
-    console.log(total);
-    return total;
-  }
 }

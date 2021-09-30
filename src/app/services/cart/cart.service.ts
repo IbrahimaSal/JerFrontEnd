@@ -51,9 +51,9 @@ export class CartService {
   addToCart = (index:number) => {  
     try{
     const panierInitial={
-      produits:[],
-      total:0,
-      message:"il n'y rien dans votre panier",
+      produits: [],
+      total: 0,
+      message: 'Rien dans votre panier',
     }
     const cart = localStorage.getItem('cart')?JSON.parse(localStorage.getItem('cart')||JSON.stringify(panierInitial)):panierInitial;
     if (cart.produits.includes(index)){
