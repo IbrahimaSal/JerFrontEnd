@@ -1,5 +1,5 @@
 <app-user-status></app-user-status>
-<nav ngbNav #nav="ngbNav" class="nav-tabs-md bg-warning navbar">
+<nav ngbNav #nav="ngbNav" class="nav-tabs-md bg-transparent navbar">
     <ng-container ngbNavItem>
       <a ngbNavLink class="text-white">A propos de moi</a>
       <ng-template ngbNavContent>
@@ -19,8 +19,8 @@
     <ng-container ngbNavItem >
       <a ngbNavLink class="text-white">Formules d'abonnement</a>
       <ng-template ngbNavContent>
-        <div style="min-height: 10vh;"class="d-flex container-fluid ">
-          <div class="d-flex flex-column justify-content-between w-25 bg-primary">
+        <div style="min-height: 10vh;"class="d-flex ">
+          <div class="d-flex flex-column justify-content-around w-25 bg-transparent">
             <div 
               *ngFor="let abonnement of abonnements"
               (click)="changeCurentIndex(abonnement.numero)"
@@ -32,7 +32,7 @@
           <div 
             *ngFor="let abonnement of abonnements"          
             [style.display]="displayState(abonnement.numero)"
-            class="w-75 bg-success text-white flex-column justify-content-between align-items-center">
+            class="w-75 bg-transparent text-white flex-column justify-content-between align-items-center">
             <div class="h-75">{{abonnement.description}}</div>
             <button 
               (click)="addToCart(abonnement.numero)"

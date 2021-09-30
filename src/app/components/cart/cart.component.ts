@@ -40,7 +40,7 @@ export class CartComponent implements OnInit {
 
   message:string="";
 
-  totalPanier:number =0;
+  totalPanier:number=0;
   
   abonnements=this.cartService.abonnements;
 }
