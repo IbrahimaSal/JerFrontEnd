@@ -21,5 +21,4 @@ export class UserStatusComponent implements OnInit {
   }
   totalPanier:number=0;
   loggedIn:boolean = this.authenticationService.loggedIn();
-
 }
