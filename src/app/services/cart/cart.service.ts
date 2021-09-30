@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +10,12 @@ export class CartService {
   }
   
   private messagesubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
-
-  private cartSubject: BehaviorSubject<any> = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('cart')||'{produits:[],total:0}'));
+  panierInitial={
+    produits: [],
+    total: 0,
+    message: "Il n'y a rien dans votre panier !"
+  }
+  private cartSubject: BehaviorSubject<any> = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('cart')||JSON.stringify(this.panierInitial)));
 
   getMessage = () =>{
     return this.messagesubject;
