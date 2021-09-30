@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from 'src/app/services/cart/cart.service';
+// import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +8,9 @@ import { CartService } from 'src/app/services/cart/cart.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private cartService:CartService) { }
+  constructor(
+    // private cartService:CartService
+    ) { }
 
   ngOnInit(): void {
   }
@@ -27,6 +29,6 @@ export class HomeComponent implements OnInit {
       return 'transparent';
     }
   }
-  abonnements=this.cartService.abonnements;
-  addToCart=this.cartService.addToCart;
+  // abonnements=this.cartService.abonnements;
+  // addToCart=this.cartService.addToCart;
 }

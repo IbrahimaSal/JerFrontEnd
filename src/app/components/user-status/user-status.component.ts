@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from 'src/app/services/cart/cart.service';
+// import { CartService } from 'src/app/services/cart/cart.service';
 import { AuthenticationService } from 'src/app/services/user/authentication.service';
 
 @Component({
@@ -10,11 +10,12 @@ import { AuthenticationService } from 'src/app/services/user/authentication.serv
 export class UserStatusComponent implements OnInit {
 
   constructor(private authenticationService: AuthenticationService, 
-    private _cartService:CartService) { 
-      _cartService.getCart().subscribe(data => {
-        console.log(JSON.stringify(data));
-        this.totalPanier=data.total;
-      })
+    // private _cartService:CartService
+    ) { 
+      // _cartService.getCart().subscribe(data => {
+      //   console.log(JSON.stringify(data));
+      //   this.totalPanier=data.total;
+      // })
   }
 
   ngOnInit(): void {

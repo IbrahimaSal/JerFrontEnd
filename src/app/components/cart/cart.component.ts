@@ -8,13 +8,15 @@ import { CartService } from 'src/app/services/cart/cart.service';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private cd: ChangeDetectorRef,private cartService: CartService) {
+  constructor(private cd: ChangeDetectorRef,
+    // private cartService: CartService
+    ) {
     
-    this.cartService.getCart().subscribe((data) => {
-      console.log(JSON.stringify(data));
-      this.totalPanier=data.total;
-      this.message=data.message;
-    });
+    // this.cartService.getCart().subscribe((data) => {
+    //   console.log(JSON.stringify(data));
+    //   this.totalPanier=data.total;
+    //   this.message=data.message;
+    // });
     // setTimeout(() => {
     //   this.cartService.getMessage().subscribe((data:string) => {    
     //     console.log(data);  
@@ -34,13 +36,13 @@ export class CartComponent implements OnInit {
     // this.cd.detectChanges();
   }
 
-  listOfProducts = this.cartService.listOfProducts;
+  // listOfProducts = this.cartService.listOfProducts;
 
-  removeProductFromCart = this.cartService.removeFromCart;
+  // removeProductFromCart = this.cartService.removeFromCart;
 
   message:string="";
 
   totalPanier:number =0;
   
-  abonnements=this.cartService.abonnements;
+  // abonnements=this.cartService.abonnements;
 }
