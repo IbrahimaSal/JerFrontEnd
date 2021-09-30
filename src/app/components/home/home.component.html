@@ -32,12 +32,12 @@
           <div 
             *ngFor="let abonnement of abonnements"          
             [style.display]="displayState(abonnement.numero)"
-            class="w-75 bg-transparent text-white flex-column justify-content-between align-items-center">
+            class="w-75 bg-transparent text-white flex-column  align-items-start">
             <div class="h-75">{{abonnement.description}}</div>
             <button 
               (click)="addToCart(abonnement.numero)"
               class="h-25" 
-              style="background-color: red;margin-bottom: 20%;">
+              style="background-color: red;">
               Ajouter au panier : {{abonnement.prix}}€
             </button>
           </div>
