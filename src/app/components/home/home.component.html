@@ -20,10 +20,11 @@
       <a ngbNavLink class="text-white">Formules d'abonnement</a>
       <ng-template ngbNavContent>
         <div style="min-height: 10vh;"class="d-flex ">
-          <div class="d-flex flex-column justify-content-around w-25 bg-transparent">
+          <div class="d-flex flex-column justify-content-between w-25 bg-transparent">
             <div 
               *ngFor="let abonnement of abonnements"
               (click)="changeCurentIndex(abonnement.numero)"
+              id="abonnement"
               [style.backgroundColor]="backgroundColor(abonnement.numero)"              
               class="text-white">
               {{abonnement.nom}}
@@ -37,7 +38,7 @@
             <button 
               (click)="addToCart(abonnement.numero)"
               class="h-25" 
-              style="background-color: red;">
+              style="background-color: red;margin-bottom: 1%;">
               Ajouter au panier : {{abonnement.prix}}€
             </button>
           </div>
