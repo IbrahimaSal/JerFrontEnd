@@ -93,24 +93,24 @@ export class CartService {
   //   }
   // }
 
-  // abonnements=[
-  //   {
-  //     numero:1,
-  //     prix:10,
-  //     nom:"abonnement 1",
-  //     description: "Si tu t'abonnes à cet option, tu auras accès à : blablabla blabla blabla blablabla blabla blabla blablabla blabla blabla blablabla blabla blabla"
-  //   },
-  //   {
-  //     numero:2,
-  //     prix:20,
-  //     nom:"abonnement 2",
-  //     description: "Description de l'abonnement 2"
-  //   },
-  //   {
-  //     numero:3,
-  //     prix:30,
-  //     nom:"abonnement 3",
-  //     description: "Tu peux voir: XXXXX YYYYYY ZZZZZZ"
-  //   }
-  // ]
+  abonnements=[
+    {
+      numero:1,
+      prix:10,
+      nom:"abonnement 1",
+      description: "Si tu t'abonnes à cet option, tu auras accès à : blablabla blabla blabla blablabla blabla blabla blablabla blabla blabla blablabla blabla blabla"
+    },
+    {
+      numero:2,
+      prix:20,
+      nom:"abonnement 2",
+      description: "Description de l'abonnement 2"
+    },
+    {
+      numero:3,
+      prix:30,
+      nom:"abonnement 3",
+      description: "Tu peux voir: XXXXX YYYYYY ZZZZZZ"
+    }
+  ]
 }

@@ -21,15 +21,15 @@
       <ng-template ngbNavContent>
         <div style="min-height: 10vh;"class="d-flex container-fluid ">
           <div class="d-flex flex-column justify-content-between w-25 bg-primary">
-            <!-- <div 
+            <div 
               *ngFor="let abonnement of abonnements"
               (click)="changeCurentIndex(abonnement.numero)"
               [style.backgroundColor]="backgroundColor(abonnement.numero)"              
               class="text-white">
               {{abonnement.nom}}
-            </div>             -->
+            </div>            
           </div>
-          <!-- <div 
+          <div 
             *ngFor="let abonnement of abonnements"          
             [style.display]="displayState(abonnement.numero)"
             class="w-75 bg-success text-white flex-column justify-content-between align-items-center">
@@ -41,7 +41,7 @@
               style="background-color: red;">
               Ajouter au panier : {{abonnement.prix}}€
             </button>
-          </div> -->
+          </div>
         </div>
       </ng-template>
     </ng-container>
