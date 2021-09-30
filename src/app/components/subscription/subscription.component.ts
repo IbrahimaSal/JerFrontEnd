@@ -142,14 +142,14 @@ export class SubscriptionComponent implements OnInit {
     this._authentication.loginUser(this.loginUserData)
                         .subscribe(
                           response => {
-                            // const panierInitial ={
-                            //   produits:[],
-                            //   total:0,
-                            //   message:"il n'y rien dans votre panier",
-                            // }
+                            const panierInitial ={
+                              produits:[],
+                              total:0,
+                              message:"il n'y rien dans votre panier",
+                            }
                             console.log(response);
                             localStorage.setItem('token',response.token);
-                            // localStorage.setItem('cart',JSON.stringify(panierInitial));
+                            localStorage.setItem('cart',JSON.stringify(panierInitial));
                             this._router.navigate(['/services/userprofile'])
                           }, 
                           error => {
