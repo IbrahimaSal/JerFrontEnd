@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,9 @@ export class CartService {
       total:0,
       message:"il n'y rien dans votre panier",
     };
-    const liste =JSON.parse(localStorage.getItem('cart')||JSON.stringify(panierInitial)).produits;
+    try{
+    const cart = localStorage.getItem('cart')?JSON.parse(localStorage.getItem('cart')||JSON.stringify(panierInitial)):panierInitial;
+    const liste =cart.produits;
     if (liste.length === 0){
       console.log(liste.length)
       // this.messagesubject.next("vous n'avez que dal pour l'instant dans votre panier");      
@@ -39,15 +41,21 @@ export class CartService {
       return liste;
       // return liste.map((id: number)=> this.abonnements[id].nom);
     }
+    }
+    catch(error){
+      console.log(error);
+    }
+    
   }
 
   addToCart = (index:number) => {  
+    try{
     const panierInitial={
       produits:[],
       total:0,
       message:"il n'y rien dans votre panier",
     }
-    const cart = JSON.parse(localStorage.getItem('cart')||JSON.stringify(panierInitial));
+    const cart = localStorage.getItem('cart')?JSON.parse(localStorage.getItem('cart')||JSON.stringify(panierInitial)):panierInitial;
     if (cart.produits.includes(index)){
       alert(`vous avez déja :${this.abonnements[index-1].nom} dans votre panier`);      
     }
@@ -58,6 +66,10 @@ export class CartService {
       this.cartSubject.next(cart);
       localStorage.setItem('cart',JSON.stringify(cart));
     }
+    }catch(error){
+      console.log(error)
+    }
+
   }
 
   removeFromCart = (index:number) =>{
@@ -66,7 +78,7 @@ export class CartService {
       total:0,
       message:"il n'y rien dans votre panier",
     };
-    const cart = JSON.parse(localStorage.getItem('cart')||JSON.stringify(panierInitial));
+    const cart = localStorage.getItem('cart')?JSON.parse(localStorage.getItem('cart')||JSON.stringify(panierInitial)):panierInitial;
     if (!cart.produits.includes(index)){
       alert(`vous n'avez plus d':${this.abonnements[index-1].nom} dans votre panier`);      
     }
