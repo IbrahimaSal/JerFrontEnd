@@ -54,6 +54,7 @@ export class AuthenticationService {
   }
   loggoutUser = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('cart');
   }
   constructor(private http: HttpClient) { }
 }

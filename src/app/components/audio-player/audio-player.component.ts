@@ -49,8 +49,7 @@ import { PlayerService } from 'src/app/services/audio/player.service';
       })),
       state('zero', style({  opacity: 1, transform: 'translateY(-50%) rotate(0deg)'})),
       state('stop', style({  opacity: 1, transform: 'translateY(0%)', })),
-      transition('play <=> stop', animate('1500ms ease-in-out')),
-      // transition('play <=> pause', animate('1ms ease-in-out')),
+      transition('play <=> stop', animate('1500ms ease-in-out')),      
       transition('pause <=> stop', animate('1500ms ease-in-out')),
     ]),
     
