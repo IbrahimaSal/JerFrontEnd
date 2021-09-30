@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-// import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,42 +11,42 @@ export class CartService {
   
   // private messagesubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
 
-  // private cartSubject: BehaviorSubject<any> = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('cart')||'{produits:[],total:0}'));
+  private cartSubject: BehaviorSubject<any> = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('cart')||'{produits:[],total:0}'));
 
   // getMessage = () =>{
   //   return this.messagesubject;
   // }
 
-  // getCart = () =>{
-  //   return this.cartSubject;
-  // }
+  getCart = () =>{
+    return this.cartSubject;
+  }
 
-  // listOfProducts = () =>{ 
-  //   const panierInitial={
-  //     produits:[],
-  //     total:0,
-  //     message:"il n'y rien dans votre panier",
-  //   };
-  //   try{
-  //   const cart = localStorage.getItem('cart')?JSON.parse(localStorage.getItem('cart')||JSON.stringify(panierInitial)):panierInitial;
-  //   const liste =cart.produits;
-  //   if (liste.length === 0){
-  //     console.log(liste.length)
-  //     // this.messagesubject.next("vous n'avez que dal pour l'instant dans votre panier");      
-  //     return [];
-  //   }
-  //   else{ 
-  //     console.log(liste.length)
-  //     // this.messagesubject.next("votre panier est composé de:");      
-  //     return liste;
-  //     // return liste.map((id: number)=> this.abonnements[id].nom);
-  //   }
-  //   }
-  //   catch(error){
-  //     console.log(error);
-  //   }
+  listOfProducts = () =>{ 
+    const panierInitial={
+      produits:[],
+      total:0,
+      message:"il n'y rien dans votre panier",
+    };
+    try{
+    const cart = localStorage.getItem('cart')?JSON.parse(localStorage.getItem('cart')||JSON.stringify(panierInitial)):panierInitial;
+    const liste =cart.produits;
+    if (liste.length === 0){
+      console.log(liste.length)
+      // this.messagesubject.next("vous n'avez que dal pour l'instant dans votre panier");      
+      return [];
+    }
+    else{ 
+      console.log(liste.length)
+      // this.messagesubject.next("votre panier est composé de:");      
+      return liste;
+      // return liste.map((id: number)=> this.abonnements[id].nom);
+    }
+    }
+    catch(error){
+      console.log(error);
+    }
     
-  // }
+  }
 
   // addToCart = (index:number) => {  
   //   try{
